@@ -5,7 +5,6 @@ const users = require('../models/user');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail');
 const tbProduct = require('../models/product');
-const tbDiscount = require('../models/discount');
 const tbMember = require('../models/member');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');

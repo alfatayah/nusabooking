@@ -6,7 +6,6 @@ const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail')
 const tbMember = require('../models/member');
-const tbDiscount = require('../models/discount');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
@@ -157,27 +156,6 @@ module.exports = {
     }
   },
 
-  viewDiscount: async (req, res) => {
-    try {
-      list.splice(0, list.length )
-      const discount = await tbDiscount.find()
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
- 
-      res.render('admin/discount/view_discount', {
-        title: "Nusa | Discount",
-        user: req.session.user, 
-        discount,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/discount");
-    }
-  },
-
 
 
   viewProduct: async (req, res) => {
@@ -211,7 +189,6 @@ module.exports = {
     try {
       const product = await tbProduct.find()
       const member = await tbMember.find()
-      const discount = await tbDiscount.find() 
     if( product.length ==  list.length ){
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -221,7 +198,6 @@ module.exports = {
         user: req.session.user,
         product,
         member,
-        discount,
         alert,
         list
       });
@@ -235,7 +211,6 @@ module.exports = {
         user: req.session.user,
         product,
         member,
-        discount,
         alert,
         list
       });

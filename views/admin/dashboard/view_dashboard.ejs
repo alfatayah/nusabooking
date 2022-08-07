@@ -94,14 +94,6 @@
                           </div>
                           <div class="row">
                             <div class="col">
-                              <div class="form-group">
-                                <select class="form-control" id="discountValue" name="discountValue" onchange="onChangeDiskon() " >
-                                  <option selected disabled value="">Diskon</option>
-                                  <% for(var x = 0; x < discount.length; x++){ %>
-                                    <option value=<%= discount[x].id + '^' +  discount[x].amount %> > <%= discount[x].typeDiscount %></option>
-                                    <% } %>
-                                </select>
-                              </div>
 
                             </div>
                             <div class="col">

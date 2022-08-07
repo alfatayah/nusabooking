@@ -18,7 +18,6 @@ seeder.connect(localDB, {
     './models/product',
     './models/transaction',
     './models/transaction_detail',
-    './models/discount',
     './models/type',
     './models/cash_payment',
     './models/split_payment',
@@ -28,7 +27,7 @@ seeder.connect(localDB, {
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['user' , 'member', 'merk','product' , 'transaction', 'transaction_detail', 'discount', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment'  ], function () {
+  seeder.clearModels(['user' , 'member', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment'  ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -174,25 +173,6 @@ var data = [
         image:'images/4.webp',
         price: 13000,
         barcode: 'BR12348',
-      },
-    ]
-  },
-  {
-    'model': 'discount',
-    'documents': [
-      {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
-        typeDiscount:"Ramadhan sales off 50%",
-        amount: 1000,
-        description:"diskon hit ramadhan",
-        status: "Active",
-      },
-      {
-        _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242'),
-        typeDiscount:"Black friday off 90%",
-        amount: 2000,
-        description:"diskon hit puasa lah",
-        status: "Active",
       },
     ]
   },

@@ -4,7 +4,6 @@ const path = require('path');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbMember = require('../models/member');
-const tbDiscount = require('../models/discount');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 
