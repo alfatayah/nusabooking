@@ -44,7 +44,7 @@ router.post("/user", userController.addUser);
 router.put("/user", userController.editUser);
 router.delete('/user/:id', userController.deleteUser);
 
-router.get("/product", adminController.viewProduct);
+router.get("/product", productController.viewProduct);
 router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
@@ -61,6 +61,5 @@ router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);
 
 router.get("/member", adminController.viewMember);
-router.get("/documentation", adminController.viewDoc);
 
 module.exports = router;

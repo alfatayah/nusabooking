@@ -12,48 +12,42 @@
       <form action="/admin/product/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control name" name="name" placeholder="Enter name product" required>
-          </div>
-          <!-- TODO: Merk display name -->
-          <div class="form-group">
-            <label for="name">Merk</label>
-            <select class="form-control merk" name="merkId">
-              <% for(let i = 0; i< merk.length; i++){ %>
-              <option value="<%= merk[i].id %>"><%= merk[i].name %></option>
-              <%}%>
-            </select>
+            <label for="name">Name </label>
+            <input type="text" class="form-control product_name" name="product_name" placeholder="Enter Name Product" required />
           </div>
           <div class="form-group">
             <label for="name">Type</label>
-            <select class="form-control type" name="typeId">
-              <% for(let i = 0; i< type.length; i++){ %>
-              <option value="<%= type[i].id %>"><%= type[i].name %></option>
-              <%}%>
+            <select class="form-control tipe" name="tipe">
+              <option value="">---- Type ----</option>
+               <option value="Camera" >Camera</option>
+               <option value="Tripod" >Tripod</option>
+               <option value="Lighting" >Lighting</option>
+               <option value="Audio" >Audio</option>
+               <option value="Tripod" >Tripod</option>
+               <option value="Stabilizer" >Stabilizer</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="name">Status</label>
-            <input type="text" class="form-control status" name="status" placeholder="Enter status" required>
+            <label for="name">Barcode</label>
+            <input type="text" class="form-control barcode" name="barcode" placeholder="Enter Barcode"
+            required />
           </div>
+
           <div class="form-group">
             <label for="name">Price</label>
-            <input type="number" class="form-control price" name="price" placeholder="Enter price" required>
+            <input type="number" class="form-control price" name="price" placeholder="Enter Price"
+              required />
           </div>
           <div class="form-group">
-            <label for="name">Description</label>
-            <input type="text" class="form-control description" name="description" placeholder="Enter description" required>
+            <label for="name">Status Produk</label>
+            <select class="form-control status_produk" name="status_produk">
+              <option value="">---- Status Produk ----</option>
+               <option value="Avalaible" >Avalaible</option>
+               <option value="Not Avalaible" >Not Avalaible</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="name">Barcode</label>
-            <input type="text" class="form-control barcode" name="barcode" placeholder="Enter barcode" required>
-          </div>
-         
-          <div class="form-group">
-            <label for="name">Image</label>
-            <input type="file" class="form-control" name="image">
-            <span>Pilih gambar untuk update image</span>
-          </div>
+        
+
         </div>
         <div class="modal-footer">
           <input type="hidden" class="id" name="id">
