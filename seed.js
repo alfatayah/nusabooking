@@ -43,15 +43,17 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
-        username: 'admin',
+        username: 'jafar',
         password: 'rahasia',
-        status: 'SPV',
+        statusPenempatan: 'Cipadung',
+        status: 'admin',
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903341'),
-        username: 'admin2',
+        username: 'fadhil',
         password: 'rahasia',
-        status: 'STAFF',
+        statusPenempatan: 'DU',
+        status: 'staff',
       },
     ]
   },

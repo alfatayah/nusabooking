@@ -65,23 +65,26 @@ module.exports = {
     try {
       const { username, password } = req.body;
       const user = await users.findOne({ username: username });
+   
       if (!user) {
         req.flash("alertMessage", "User Not Found !");
         req.flash("alertStatus", "danger");
         res.redirect("/admin/signin");
       }
-      const isPasswordMatch = await bycrypt.compare(password, user.password);
-      if (!isPasswordMatch) {
-        req.flash("alertMessage", "Password Not Match !");
+      
+      if (user.username ==  username && user.password == password) {
+        req.session.user = {
+          id: user.id,
+          username: user.username,
+          status : user.status
+        }
+        res.redirect('/admin/dashboard');
+      }else{
+        req.flash("alertMessage", "Username or Password Not Match !");
         req.flash("alertStatus", "danger");
         res.redirect("/admin/signin");
       }
-      req.session.user = {
-        id: user.id,
-        username: user.username,
-        status : user.status
-      }
-      res.redirect('/admin/dashboard');
+     
 
     } catch (error) {
       res.redirect("/admin/signin");

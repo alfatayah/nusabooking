@@ -7,7 +7,7 @@ const transactionController = require('../controllers/transactionController');
 const discountController = require('../controllers/discountController');
 const merkController = require('../controllers/merkController');
 const typeController = require('../controllers/typeController');
-
+const userController = require('../controllers/userController');
 /**
  *  @name viewsigninRoutes  
  *  @route {POST} /v1/file
@@ -44,6 +44,10 @@ router.post("/discount", discountController.addDiscount);
 router.put("/discount", discountController.editDiscount);
 router.delete('/discount/:id', discountController.deleteDiscount);
 
+router.get("/user", userController.viewUser);
+router.post("/user", userController.addUser);
+router.put("/user", userController.editUser);
+router.delete('/user/:id', userController.deleteUser);
 
 router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, productController.addProduct);

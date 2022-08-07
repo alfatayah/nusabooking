@@ -52,6 +52,16 @@
     <i class="fas fa-fw fa-tags"></i>
     <span>Discount</span></a
   >
+ 
+  <% if (user.status == 'admin'){  %> 
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/user">
+        <i class="fas fa-fw fa-users"></i>
+        <span> Karyawan</span></a
+      >
+  <% }%> 
+ 
+ 
 </li>
  
   <!-- Nav Item - List Transaksi -->
