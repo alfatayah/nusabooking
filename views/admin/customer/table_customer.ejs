@@ -12,24 +12,18 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>No Member</th>
-            <th>Nama</th>
             <th>NIK</th>
+            <th>Nama</th>
             <th>Instagram</th> 
-            <th>No HP</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <% for(let i = 0; i < member.length; i++) { %>
+          <% for(let i = 0; i < customer.length; i++) { %>
           <tr>
             <td><%= i + 1 %></td>
-            <td><%= member[i].no_member %></td>
-            <td><%= member[i].name %></td>
-            <td><%= member[i].identity %></td>
-            <td><%= member[i].username_ig %></td>
-            <td><%= member[i].no_hp %></td>
-            <td><%= member[i].status %></td>
+            <td><%= customer[i].nik %></td>
+            <td><%= customer[i].name %></td>
+            <td><%= customer[i].username_ig %></td>
           </tr>
           <% }%>
         </tbody>

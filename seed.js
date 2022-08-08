@@ -13,7 +13,7 @@ seeder.connect(localDB, {
   // Load Mongoose models
   seeder.loadModels([
     './models/user',
-    './models/member',
+    './models/customer',
     './models/merk',
     './models/product',
     './models/transaction',
@@ -27,7 +27,7 @@ seeder.connect(localDB, {
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['user' , 'member', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment'  ], function () {
+  seeder.clearModels(['user' , 'customer', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment'  ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -57,34 +57,19 @@ var data = [
     ]
   },
   {
-    'model': 'member',
+    'model': 'customer',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
-        no_member: "NK000326",
+        nik: 21312312313123,
         name: 'fadhil',
-        no_hp: 0893733342323,
         username_ig: '@alfatayah',
-        identity: 21312312313123,
-        status: 1,
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b17300fc903315'),
-        no_member: "NK000327",
+        nik: 21312312313113,
         name: 'Arya',
-        no_hp: 0893733342323,
         username_ig: '@arya',
-        identity: 21312312313123,
-        status: 1,
-      },
-      {
-        _id: mongoose.Types.ObjectId('5196cbe292b17300fc903315'),
-        no_member: "NK000328",
-        name: 'Putra',
-        no_hp: 0893733342323,
-        username_ig: '@Putra',
-        identity: 21312312313123,
-        status: 1,
       },
     ]
   },

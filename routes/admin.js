@@ -7,6 +7,7 @@ const transactionController = require('../controllers/transactionController');
 const merkController = require('../controllers/merkController');
 const typeController = require('../controllers/typeController');
 const userController = require('../controllers/userController');
+const customerController = require('../controllers/customerController');
 /**
  *  @name viewsigninRoutes  
  *  @route {POST} /v1/file
@@ -60,6 +61,6 @@ router.post("/type", typeController.addType);
 router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);
 
-router.get("/member", adminController.viewMember);
+router.get("/customer", customerController.viewCustomer);
 
 module.exports = router;

@@ -5,7 +5,7 @@ const users = require('../models/user');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail');
 const tbProduct = require('../models/product');
-const tbMember = require('../models/member');
+// const tbMember = require('../models/customer');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const payment_cash = require('../models/cash_payment');
@@ -25,7 +25,7 @@ module.exports = {
       const trans = await tbTrans.find({ status: { $nin: ['KASBON', 'DP'] } })
         .populate({ path: 'member_Id ', select: 'no_member name' })
         .populate({path : 'userid' })
-      const member = await tbMember.find()
+      // const member = await tbMember.find()
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus, user: req.session.user };
@@ -33,7 +33,7 @@ module.exports = {
         title: "Nusa | Transaction",
         user: req.session.user,
         trans,
-        member,
+        // member,
         alert,
       });
     } catch (error) {
@@ -103,7 +103,7 @@ module.exports = {
 
       const trans = await tbTrans.find({ date_transaction: { $gte: startDate, $lt: endDate }, status: { $nin: ['KASBON', 'DP'] } })
         .populate({ path: 'member_Id ', select: 'no_member name' })
-      const member = await tbMember.find()
+      // const member = await tbMember.find()
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus, user: req.session.user };
@@ -111,7 +111,7 @@ module.exports = {
         title: "Nusa | Transaction",
         user: req.session.user,
         trans,
-        member,
+        // member,
         alert,
       });
     } catch (error) {

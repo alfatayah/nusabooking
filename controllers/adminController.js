@@ -5,7 +5,7 @@ const users = require('../models/user');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail')
-const tbMember = require('../models/member');
+// const tbMember = require('../models/customer');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
@@ -117,26 +117,7 @@ module.exports = {
     }
   },
 
-  viewMember: async (req, res) => {
-    try {
-      list.splice(0, list.length )
-      const member = await tbMember.find();
-      // untuk alert message dia call component dari partials/message.ejs
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/member/view_member', {
-        title: "Nusa | Product",
-        user: req.session.user, 
-        member,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/member");
-    }
-  },
+ 
 
 
 
@@ -145,7 +126,7 @@ module.exports = {
   viewDashboard: async (req, res) => {
     try {
       const product = await tbProduct.find()
-      const member = await tbMember.find()
+      // const member = await tbMember.find()
     if( product.length ==  list.length ){
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -154,7 +135,7 @@ module.exports = {
         title: "Nusa | Dashboard",
         user: req.session.user,
         product,
-        member,
+        // member,
         alert,
         list
       });
@@ -167,7 +148,7 @@ module.exports = {
         title: "Nusa | Dashboard",
         user: req.session.user,
         product,
-        member,
+        // member,
         alert,
         list
       });
@@ -191,7 +172,7 @@ module.exports = {
       const product = await tbProduct.find()
       .populate({ path: 'discount_id', select: 'typeDiscount amount' })
       
-      const member = await tbMember.find()
+      // const member = await tbMember.find()
       const discount = await tbDiscount.find();
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -210,7 +191,7 @@ module.exports = {
           user: req.session.user,
           product,
           list,
-          member,
+          // member,
           discount,
           alert
         });
@@ -231,10 +212,10 @@ module.exports = {
     const status = "NOT_DONE";
     const { select2, productId, jaminan  , days , subtotal, diskonID, total_discount, total,  desc_trans, date_transaction, userid,  start_date , end_date  }  = req.body;
     const product = await tbProduct.find({ _id : productId});
-    const member = await tbMember.findOne({_id : select2});
+    // const member = await tbMember.findOne({_id : select2});
     const transactionWithDiskon = {
       _id: transid,
-      member_Id: select2, 
+      // member_Id: select2, 
       subtotal, 
       total,
       total_discount, 
@@ -254,7 +235,7 @@ module.exports = {
     }
     const newTransaction = {
       _id: transid,
-      member_Id: select2, 
+      // member_Id: select2, 
       subtotal, 
       total,
       total_discount, 
@@ -305,16 +286,15 @@ module.exports = {
   reportCustomer: async (req, res) => {
     try {
       // untuk alert message dia call component dari partials/message.ejs
-      const member = await tbMember.find()
-      .populate({ path: 'transaction_Id '})
+      // const member = await tbMember.find()
+      // .populate({ path: 'transaction_Id '})
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      console.log("member", member);
       res.render('admin/report/view_customer', {
         title: "Nusa | Laporan Pelanggan",
         user: req.session.user, 
-        member,
+        // member,
         alert,
       });
     } catch (error) {
