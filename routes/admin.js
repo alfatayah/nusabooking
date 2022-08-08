@@ -50,6 +50,10 @@ router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
 
+router.get("/customer", customerController.viewCustomer);
+router.post("/customer", customerController.addCustomer);
+router.put("/customer", customerController.editCustomer);
+router.delete('/customer/:id', customerController.deleteCustomer);
 
 router.get("/merk", adminController.viewMerk);
 router.post("/merk", merkController.addMerk);
@@ -61,6 +65,6 @@ router.post("/type", typeController.addType);
 router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);
 
-router.get("/customer", customerController.viewCustomer);
+
 
 module.exports = router;

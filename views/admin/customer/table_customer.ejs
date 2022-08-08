@@ -2,9 +2,9 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-customer">
       <i class="fas fa-plus"></i>
-    </button> -->
+    </button>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -15,6 +15,7 @@
             <th>NIK</th>
             <th>Nama</th>
             <th>Instagram</th> 
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,16 @@
             <td><%= customer[i].nik %></td>
             <td><%= customer[i].name %></td>
             <td><%= customer[i].username_ig %></td>
+            <td>
+              <form action="/admin/customer/<%= customer[i].id %>?_method=DELETE" method="POST">
+                <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
+                data-id="<%= customer[i].id %>" data-nik="<%= customer[i].nik %>"  data-name="<%= customer[i].name %>"
+                  data-username_ig="<%= customer[i].username_ig %>" >
+                  <i class="fas fa-edit"></i></a>
+                <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                  <i class="fas fa-trash"></i></button>
+              </form>
+            </td>
           </tr>
           <% }%>
         </tbody>
