@@ -19,11 +19,11 @@
         <%- include('../../partials/message.ejs') %>
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Member</h1>
+        <h1 class="h3 mb-4 text-gray-800">Customer</h1>
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
-        <%- include('table_member.ejs') %>
+        <%- include('table_customer.ejs') %>
 
       </div>
       <!-- /.container-fluid -->
@@ -38,7 +38,7 @@
 
 </div>
 <!-- End of Page Wrapper -->
-
+</body>
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
@@ -64,5 +64,20 @@
   </div>
 </div>
 
+<%- include('add_customer.ejs') %>
+<%- include('edit_customer.ejs') %>
 <%- include('../../partials/js.ejs') %>
-</body>
+
+<script>
+  $('#dataTable').on('click', '.button-update', function () {
+    let id = $(this).data('id');
+    let nik = $(this).data('nik');
+    let name = $(this).data('name');
+    let username_ig = $(this).data('username_ig');
+    $('#edit-modal').modal('show');
+    $('.id').val(id);
+    $('.nik').val(nik);
+    $('.name').val(name);
+    $('.username_ig').val(username_ig);
+  })
+</script>

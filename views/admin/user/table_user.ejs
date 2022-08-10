@@ -2,7 +2,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-discount">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_user">
         <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -12,26 +12,26 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Type Discount</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th>Status</th>
+              <th>Nama Karyawan</th>
+              <th>Password</th>
+              <th>Status Penempatan</th>
+              <th>Status Karyawan</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <% for(let i = 0; i < discount.length; i++) { %>
+            <% for(let i = 0; i < dataUser.length; i++) { %>
             <tr>
               <td><%= i + 1 %></td>
-              <td><%= discount[i].typeDiscount %></td>
-              <td><%= discount[i].amount %></td>
-              <td><%= discount[i].description %></td>
-              <td><%= discount[i].status %></td>
+              <td><%= dataUser[i].username %></td>
+              <td><%= dataUser[i].password %></td>
+              <td><%= dataUser[i].statusPenempatan %></td>
+              <td><%= dataUser[i].status %></td>
               <td>
-                <form action="/admin/discount/<%= discount[i].id %>?_method=DELETE" method="POST">
+                <form action="/admin/user/<%= dataUser[i].id %>?_method=DELETE" method="POST">
                   <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                  data-id="<%= discount[i].id %>" data-diskon="<%= discount[i].typeDiscount %>"  data-amount="<%= discount[i].amount %>"
-                    data-description="<%= discount[i].description %>" data-status="<%= discount[i].status %>" >
+                  data-id="<%= dataUser[i].id %>" data-username="<%= dataUser[i].username %>"  data-password="<%= dataUser[i].password %>"
+                     data-penempatan="<%= dataUser[i].statusPenempatan %>"  data-status="<%= dataUser[i].status %>" >
                     <i class="fas fa-edit"></i></a>
                   <button type="submit" class="btn btn-danger btn-circle btn-sm">
                     <i class="fas fa-trash"></i></button>

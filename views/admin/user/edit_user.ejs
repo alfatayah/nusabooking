@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Karyawan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/admin/user/<%= dataUser.id %>?_method=PUT" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label for="namaKaryawan">Nama Karyawan</label>
+                      <input type="text" class="form-control namaKaryawan" name="namaKaryawan" placeholder=""
+                        required />
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="text" class="form-control password" name="password" placeholder=""
+                      required />
+                    </div>
+                    <div class="form-group">
+                        <label for="statusPenempatan">Status Penempatan</label>
+                        <select class="form-control statusPenempatan" name="statusPenempatan">
+                          <option value="">---- Status ----</option>
+                          <option value="Cipadung" >Cipadung</option>
+                          <option value="DU" >DU</option>
+                          <option value="Cipadung & DU" > Cipadung & DU </option>
+                        </select>
+                     </div>
+        
+                     <div class="form-group">
+                      <label for="status">Status Karyawan</label>
+                      <select class="form-control status" name="status">
+                        <option value="">---- Status Karyawan ----</option>
+                        <option value="admin" >admin</option>
+                        <option value="staff" >staff</option>
+                      </select>
+                   </div>
+                  </div>
+                <div class="modal-footer">
+                    <input type="hidden" class="id" name="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

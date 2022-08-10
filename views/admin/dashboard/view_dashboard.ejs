@@ -40,6 +40,7 @@
                 <li class="nav-item dropdown no-arrow">
                   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-user-circle fa-lg mr-2"></i>
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                       <%= user.username %>
                     </span>
@@ -77,15 +78,7 @@
 
 
                             <div class="col">
-                              <div class="form-group">
-                                <select class="form-control " name="select2" id="select2" required>
-                                  <option selected disabled value="">Member</option>
-                                  <% for(var i=0; i < member.length; i++){ %>
-                                    <option value=<%= member[i]._id %> ><%= member[i].name %>
-                                    </option>
-                                    <% } %>
-                                </select>
-                              </div>
+                         
                             </div>
 
                             <div class="col">
@@ -94,14 +87,6 @@
                           </div>
                           <div class="row">
                             <div class="col">
-                              <div class="form-group">
-                                <select class="form-control" id="discountValue" name="discountValue" onchange="onChangeDiskon() " >
-                                  <option selected disabled value="">Diskon</option>
-                                  <% for(var x = 0; x < discount.length; x++){ %>
-                                    <option value=<%= discount[x].id + '^' +  discount[x].amount %> > <%= discount[x].typeDiscount %></option>
-                                    <% } %>
-                                </select>
-                              </div>
 
                             </div>
                             <div class="col">

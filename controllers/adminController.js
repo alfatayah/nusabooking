@@ -5,8 +5,7 @@ const users = require('../models/user');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail')
-const tbMember = require('../models/member');
-const tbDiscount = require('../models/discount');
+// const tbMember = require('../models/customer');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
@@ -43,45 +42,30 @@ module.exports = {
     }
   },
 
-  viewDoc: async (req, res) => {
-     try {
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/documentation/doc', {
-        title: "Nusa | Documentation",
-        user: req.session.user, 
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/documentation");
-    }
-    
-  },
-
   actionSignin: async (req, res) => {
     try {
       const { username, password } = req.body;
       const user = await users.findOne({ username: username });
+   
       if (!user) {
         req.flash("alertMessage", "User Not Found !");
         req.flash("alertStatus", "danger");
         res.redirect("/admin/signin");
       }
-      const isPasswordMatch = await bycrypt.compare(password, user.password);
-      if (!isPasswordMatch) {
-        req.flash("alertMessage", "Password Not Match !");
+      
+      if (user.username ==  username && user.password == password) {
+        req.session.user = {
+          id: user.id,
+          username: user.username,
+          status : user.status
+        }
+        res.redirect('/admin/dashboard');
+      }else{
+        req.flash("alertMessage", "Username or Password Not Match !");
         req.flash("alertStatus", "danger");
         res.redirect("/admin/signin");
       }
-      req.session.user = {
-        id: user.id,
-        username: user.username,
-        status : user.status
-      }
-      res.redirect('/admin/dashboard');
+     
 
     } catch (error) {
       res.redirect("/admin/signin");
@@ -133,82 +117,16 @@ module.exports = {
     }
   },
 
-  viewMember: async (req, res) => {
-    try {
-      list.splice(0, list.length )
-      const member = await tbMember.find();
-      // untuk alert message dia call component dari partials/message.ejs
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/member/view_member', {
-        title: "Nusa | Product",
-        user: req.session.user, 
-        member,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/member");
-    }
-  },
-
-  viewDiscount: async (req, res) => {
-    try {
-      list.splice(0, list.length )
-      const discount = await tbDiscount.find()
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
  
-      res.render('admin/discount/view_discount', {
-        title: "Nusa | Discount",
-        user: req.session.user, 
-        discount,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/discount");
-    }
-  },
 
 
 
-  viewProduct: async (req, res) => {
-    try {
-      list.splice(0, list.length )
-      const product = await tbProduct.find()
-      .populate({ path: 'typeId', select: 'id name' })
-      .populate({ path: 'merkId', select: 'id name' })
-      const merk = await tbMerk.find();
-      const type = await tbType.find();
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/product/view_product', {
-        title: "Nusa | Product",
-        user: req.session.user, 
-        merk,
-        type,
-        product,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/product");
-    }
-  },
 
   
   viewDashboard: async (req, res) => {
     try {
       const product = await tbProduct.find()
-      const member = await tbMember.find()
-      const discount = await tbDiscount.find() 
+      // const member = await tbMember.find()
     if( product.length ==  list.length ){
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -217,8 +135,7 @@ module.exports = {
         title: "Nusa | Dashboard",
         user: req.session.user,
         product,
-        member,
-        discount,
+        // member,
         alert,
         list
       });
@@ -231,8 +148,7 @@ module.exports = {
         title: "Nusa | Dashboard",
         user: req.session.user,
         product,
-        member,
-        discount,
+        // member,
         alert,
         list
       });
@@ -256,7 +172,7 @@ module.exports = {
       const product = await tbProduct.find()
       .populate({ path: 'discount_id', select: 'typeDiscount amount' })
       
-      const member = await tbMember.find()
+      // const member = await tbMember.find()
       const discount = await tbDiscount.find();
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -275,7 +191,7 @@ module.exports = {
           user: req.session.user,
           product,
           list,
-          member,
+          // member,
           discount,
           alert
         });
@@ -296,10 +212,10 @@ module.exports = {
     const status = "NOT_DONE";
     const { select2, productId, jaminan  , days , subtotal, diskonID, total_discount, total,  desc_trans, date_transaction, userid,  start_date , end_date  }  = req.body;
     const product = await tbProduct.find({ _id : productId});
-    const member = await tbMember.findOne({_id : select2});
+    // const member = await tbMember.findOne({_id : select2});
     const transactionWithDiskon = {
       _id: transid,
-      member_Id: select2, 
+      // member_Id: select2, 
       subtotal, 
       total,
       total_discount, 
@@ -319,7 +235,7 @@ module.exports = {
     }
     const newTransaction = {
       _id: transid,
-      member_Id: select2, 
+      // member_Id: select2, 
       subtotal, 
       total,
       total_discount, 
@@ -370,16 +286,15 @@ module.exports = {
   reportCustomer: async (req, res) => {
     try {
       // untuk alert message dia call component dari partials/message.ejs
-      const member = await tbMember.find()
-      .populate({ path: 'transaction_Id '})
+      // const member = await tbMember.find()
+      // .populate({ path: 'transaction_Id '})
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      console.log("member", member);
       res.render('admin/report/view_customer', {
         title: "Nusa | Laporan Pelanggan",
         user: req.session.user, 
-        member,
+        // member,
         alert,
       });
     } catch (error) {

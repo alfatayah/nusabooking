@@ -70,21 +70,18 @@
 <script>
   $('#dataTable').on('click', '.button-update', function () {
     let id = $(this).data('id');
-    let name = $(this).data('name');
-    let merk = $(this).data('merk');
-    let type = $(this).data('type');
-    let status = $(this).data('status');
-    let price = $(this).data('price');
-    let description = $(this).data('description');
+    let product_name = $(this).data('product_name');
+    let tipe = $(this).data('tipe');
     let barcode = $(this).data('barcode');
+    let price = $(this).data('price');
+    let status_produk = $(this).data('status_produk');
+
     $('#edit-product').modal('show');
     $('.id').val(id);
-    $('.name').val(name);
-    $('.merk').val(merk);
-    $('.type').val(type);
-    $('.status').val(status);
-    $('.price').val(price);
-    $('.description').val(description);
+    $('.product_name').val(product_name);
+    $('.tipe').val(tipe);
     $('.barcode').val(barcode);
+    $('.price').val(price);
+    $('.status_produk').val(status_produk);
   })
 </script>

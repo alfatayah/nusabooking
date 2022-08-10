@@ -4,10 +4,10 @@ const productController = require('../controllers/productController')
 const { uploadSingle, uploadMultiple } = require('../middleware/multer');
 const auth = require('../middleware/auth');
 const transactionController = require('../controllers/transactionController');
-const discountController = require('../controllers/discountController');
 const merkController = require('../controllers/merkController');
 const typeController = require('../controllers/typeController');
-
+const userController = require('../controllers/userController');
+const customerController = require('../controllers/customerController');
 /**
  *  @name viewsigninRoutes  
  *  @route {POST} /v1/file
@@ -39,17 +39,21 @@ router.post ("/transaction/payment_transfer" , transactionController.paymentTran
 router.post("/transaction/payment_kasbon" , transactionController.paymentKasbon);
 router.post("/transaction/payment_dp" , transactionController.paymentDP);
 
-router.get("/discount", adminController.viewDiscount);
-router.post("/discount", discountController.addDiscount);
-router.put("/discount", discountController.editDiscount);
-router.delete('/discount/:id', discountController.deleteDiscount);
 
+router.get("/user", userController.viewUser);
+router.post("/user", userController.addUser);
+router.put("/user", userController.editUser);
+router.delete('/user/:id', userController.deleteUser);
 
-router.get("/product", adminController.viewProduct);
+router.get("/product", productController.viewProduct);
 router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
 
+router.get("/customer", customerController.viewCustomer);
+router.post("/customer", customerController.addCustomer);
+router.put("/customer", customerController.editCustomer);
+router.delete('/customer/:id', customerController.deleteCustomer);
 
 router.get("/merk", adminController.viewMerk);
 router.post("/merk", merkController.addMerk);
@@ -61,7 +65,6 @@ router.post("/type", typeController.addType);
 router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);
 
-router.get("/member", adminController.viewMember);
-router.get("/documentation", adminController.viewDoc);
+
 
 module.exports = router;

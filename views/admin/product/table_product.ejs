@@ -12,15 +12,12 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Merk</th>
+            <th>Nama Produk</th>
             <th>Type</th>
-            <th>Status</th>
             <th>Price</th>
-            <th>Description</th>
             <th>Barcode</th>
-            <th>Image</th>
-            <th>Barcode pic</th>
+            <th>Status</th>
+           
             <th>Action</th>
           </tr>
         </thead>
@@ -29,24 +26,15 @@
           <tr>
             <td><%= i + 1 %></td>
             <td><%= product[i].product_name %></td>
-            <td><%= product[i].merkId.name %></td>
-            <td><%= product[i].typeId.name %></td>
-            <td><%= product[i].status %></td>
-            <td><%= product[i].price %></td>
-            <td><%= product[i].description %></td>
-            <td><%= product[i].barcode %></td>
-            <td>
-              <img src="http://localhost:3001/<%= product[i].image %> " alt="image" width="70px">
-            </td>
-            <td>
-              <img id="barcode<%= i + 1 %>"  >
-            </td>
+            <td><%= product[i].tipe %></td>
+            <td> <%= utils.fortmatCurrency(product[i].price)  %></td>
+            <td> <%= product[i].barcode %></td>
+            <td class="m-0 font-weight-bold text-success"><%= product[i].status_produk %></td>
             <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merkId.id %>"  data-type="<%= product[i].typeId.id %>"
-                  data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
-                  data-barcode="<%= product[i].barcode %>"   data-image="<%= product[i].image %>">
+                data-id="<%= product[i].id %>" data-product_name="<%= product[i].product_name %>"   data-tipe="<%= product[i].tipe %>"
+                 data-barcode="<%= product[i].barcode %>"  data-price="<%= product[i].price %>" data-status_produk="<%= product[i].status_produk %>" >
                   <i class="fas fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i></button>
@@ -54,22 +42,6 @@
             </td>
           </tr>
 
-          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.3/dist/JsBarcode.all.min.js"></script>
-          <script type="text/javascript">
-            function generateBarcode() {
-              var barcodeValue  = "<%= product[i].barcode %>" ;
-              console.log("barcode value " , barcodeValue);
-              JsBarcode("#barcode<%= i + 1 %>", barcodeValue, {
-                format: 'code128',
-                displayValue: true,
-                lineColor: "#24292e",
-                width: 2,
-                height: 40,
-                fontSize: 20
-              });
-            }
-            generateBarcode();
-          </script>
           <% }%>
         </tbody>
       </table>

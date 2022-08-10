@@ -30,32 +30,28 @@
   <!-- Heading -->
   <div class="sidebar-heading">Master</div>
 
-  <!-- Nav Item - List Product -->
+
+
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
-      aria-controls="collapseUtilities">
-      <i class="fas fa-fw fa-list-alt"></i>
-      <span>Product</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/product">Product</a>
-        <a class="collapse-item" href="/admin/merk">Merk</a>
-        <a class="collapse-item" href="/admin/type">Type</a>
-      </div>
-    </div>
-  </li>
+    <a class="nav-link" href="/admin/product">
+      <i class="fas fa-fw fa-camera"></i>
+      <span> Produk</span></a
+    >
 
  <!-- Nav Item - List Transaksi -->
- <li class="nav-item">
-  <a class="nav-link" href="/admin/discount">
-    <i class="fas fa-fw fa-tags"></i>
-    <span>Discount</span></a
-  >
+  <% if (user.status == 'admin'){  %> 
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/user">
+        <i class="fas fa-fw fa-user"></i>
+        <span> Karyawan</span></a
+      >
+  <% }%> 
+ 
+ 
 </li>
  
   <!-- Nav Item - List Transaksi -->
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true"
       aria-controls="collapseUtilities">
       <i class="fas fa-fw fa-list-alt"></i>
@@ -64,14 +60,13 @@
     <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="/admin/transaction">Transaction</a>
-        <!-- <a class="collapse-item" href="/api/v1/transaction/filter_date/:startDate:endDate">Transaction</a> -->
         <a class="collapse-item" href="/admin/transaction/kasbon">Kasbon</a>
         <a class="collapse-item" href="/admin/transaction/transaction_7days">History</a>
       </div>
     </div>
-  </li>
+  </li> -->
 
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true"
       aria-controls="collapseUtilities">
       <i class="fas fa-fw fa-list-alt"></i>
@@ -82,26 +77,21 @@
         <a class="collapse-item" href="/admin/report/customer">Laporan Pelanggan</a>
       </div>
     </div>
-  </li>
+  </li> -->
   
 
   <!-- Nav Item - Item -->
   <li class="nav-item">
-    <a class="nav-link" href="/admin/member">
-      <i class="fas fa-fw fa-hotel"></i>
-      <span>Member</span></a
+    <a class="nav-link" href="/admin/customer">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Customer</span></a
     >
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" target="_blank" href="/admin/documentation">
-      <i class="fas fa-fw fa-book"></i>
-      <span>Documentation</span></a
-    >
-  </li>
+ 
 
   <!-- Order -->
-  <div class="sidebar-heading">Order</div>
+  <!-- <div class="sidebar-heading">Order</div> -->
 
   <!-- Nav Item - Booking -->
   <!-- <li class="nav-item">

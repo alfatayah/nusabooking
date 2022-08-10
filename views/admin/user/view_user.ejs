@@ -18,11 +18,11 @@
         <%- include('../../partials/message.ejs') %>
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Discount</h1>
+        <h1 class="h3 mb-4 text-gray-800">Karyawan</h1>
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
-        <%- include('table_discount.ejs') %>
+        <%- include('table_user.ejs') %>
 
       </div>
       <!-- /.container-fluid -->
@@ -63,22 +63,25 @@
   </div>
 </div>
 
-<%- include('add_discount.ejs') %>
-<%- include('edit_discount.ejs') %>
 <%- include('../../partials/js.ejs') %>
-
+<%- include('add_user.ejs') %>
+<%- include('edit_user.ejs') %>
 <script>
   $('#dataTable').on('click', '.button-update', function () {
     let id = $(this).data('id');
-    let diskon = $(this).data('diskon');
-    let amount = $(this).data('amount');
-    let description = $(this).data('description');
+    let namaKaryawan = $(this).data('username');
+    let password = $(this).data('password');
+    let statusPenempatan = $(this).data('penempatan');
+    console.log("statusPenempatan " , statusPenempatan);
     let status = $(this).data('status');
-    $('#edit-discount').modal('show');
+    $('#edit-user').modal('show');
     $('.id').val(id);
-    $('.diskon').val(diskon);
-    $('.amount').val(amount);
-    $('.description').val(description);
+    $('.namaKaryawan').val(namaKaryawan);
+    $('.password').val(password);
+    $('.statusPenempatan').val(statusPenempatan);
     $('.status').val(status);
+ 
+
+
   })
 </script>
