@@ -15,6 +15,8 @@ const apiRouter = require("./routes/api");
 let localDB =  process.env.LOCAL_DB;
 let deployDB =  process.env.DEPLOY_DB;
 
+
+
 //import mongoose
 const mongoose = require("mongoose");
 mongoose.connect(localDB, {
@@ -69,6 +71,17 @@ app.use(
   "/sb-admin-2",
   express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2"))
 );
+app.use(
+  "/fullcalendar",
+  express.static(path.join(__dirname, "node_modules/fullcalendar"))
+);
+app.use(
+  "/@fullcalendar",
+  express.static(path.join(__dirname, "node_modules/@fullcalendar"))
+);
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -84,6 +97,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 app.locals.moment = require('moment');
 module.exports = app;
