@@ -54,59 +54,27 @@ var data = [
         statusPenempatan: 'DU',
         status: 'staff',
       },
+      {
+        _id: mongoose.Types.ObjectId('1e96cbe292b17300fc903341'),
+        username: 'yudha',
+        password: 'rahasia',
+        statusPenempatan: 'DU',
+        status: 'kepala_staff',
+      },
     ]
   },
   {
     'model': 'customer',
     'documents': [
       {
+        
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
+        no_member: 'NK000001',
         nik: 21312312313123,
         name: 'fadhil',
         username_ig: '@alfatayah',
       },
-      {
-        _id: mongoose.Types.ObjectId('5e96cbe292b17300fc903315'),
-        nik: 21312312313113,
-        name: 'Arya',
-        username_ig: '@arya1',
-      },
-      {
-        _id: mongoose.Types.ObjectId('5e96cbe492b17300fc903315'),
-        nik: 21312312313123,
-        name: 'fadhil',
-        username_ig: '@alfatayah1',
-      },
-      {
-        _id: mongoose.Types.ObjectId('5e96cbe092b17300fc903315'),
-        nik: 21312312313113,
-        name: 'Arya',
-        username_ig: '@arya5',
-      },
-       {
-        _id: mongoose.Types.ObjectId('5e96cbe002b17300fc903315'),
-        nik: 21312312313123,
-        name: 'fadhil',
-        username_ig: '@alfatayah90',
-      },
-      {
-        _id: mongoose.Types.ObjectId('2e96cbe092b17300fc903315'),
-        nik: 21312312313113,
-        name: 'Arya',
-        username_ig: '@arya1',
-      },
-      {
-        _id: mongoose.Types.ObjectId('1e96cbe092b17300fc903315'),
-        nik: 21312312313123,
-        name: 'fadhil',
-        username_ig: '@alfatayah80',
-      },
-      {
-        _id: mongoose.Types.ObjectId('9e96cbe092b17300fc903315'),
-        nik: 21312312313113,
-        name: 'Arya',
-        username_ig: '@arya11',
-      },
+    
     ]
   },
   {
@@ -158,6 +126,14 @@ var data = [
         price: 12000,
         barcode: 'BR12345',
         status_produk:"Avalaible",
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01'),
+        product_name: 'Canon D300',
+        tipe: "Lighting",
+        price: 12000,
+        barcode: 'BR121345',
+        status_produk:"Booked",
       },
     ]
   },

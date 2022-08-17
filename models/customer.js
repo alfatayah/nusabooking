@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
 const customerSchema = new mongoose.Schema({
+  no_member: {
+    type: String,
+    required: true
+  },
   nik: {
     type: String,
     required: true

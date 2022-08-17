@@ -53,14 +53,13 @@ module.exports = {
   },
 
   editProduct: async (req, res) => {
-    const {id, product_name, tipe, barcode, price, status_produk } = req.body;
+    const {id, product_name, tipe, barcode, price } = req.body;
     try {
       const product = await tbProduct.findOne({ _id : id})
       product.product_name = product_name;
       product.tipe = tipe;
       product.barcode = barcode;
       product.price = price;
-      product.status_produk = status_produk;
      await product.save();
      req.flash("alertMessage", "Succes Update Produk");
      req.flash("alertStatus", "success");

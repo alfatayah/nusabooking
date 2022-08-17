@@ -30,13 +30,13 @@
   <!-- Heading -->
   <div class="sidebar-heading">Master</div>
 
-
-
+  <% if (user.status != 'staff'){  %> 
   <li class="nav-item">
     <a class="nav-link" href="/admin/product">
       <i class="fas fa-fw fa-camera"></i>
       <span> Produk</span></a
     >
+  <% }%> 
 
  <!-- Nav Item - List Transaksi -->
   <% if (user.status == 'admin'){  %> 
@@ -50,36 +50,6 @@
  
 </li>
  
-  <!-- Nav Item - List Transaksi -->
-  <!-- <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true"
-      aria-controls="collapseUtilities">
-      <i class="fas fa-fw fa-list-alt"></i>
-      <span>History Transaction</span>
-    </a>
-    <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/transaction">Transaction</a>
-        <a class="collapse-item" href="/admin/transaction/kasbon">Kasbon</a>
-        <a class="collapse-item" href="/admin/transaction/transaction_7days">History</a>
-      </div>
-    </div>
-  </li> -->
-
-  <!-- <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true"
-      aria-controls="collapseUtilities">
-      <i class="fas fa-fw fa-list-alt"></i>
-      <span>Laporan</span>
-    </a>
-    <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/report/customer">Laporan Pelanggan</a>
-      </div>
-    </div>
-  </li> -->
-  
-
   <!-- Nav Item - Item -->
   <li class="nav-item">
     <a class="nav-link" href="/admin/customer">
@@ -88,18 +58,6 @@
     >
   </li>
 
- 
-
-  <!-- Order -->
-  <!-- <div class="sidebar-heading">Order</div> -->
-
-  <!-- Nav Item - Booking -->
-  <!-- <li class="nav-item">
-    <a class="nav-link" href="/admin/barcode">
-      <i class="fas fa-fw fa-shopping-cart"></i>
-      <span>Barcode</span></a
-    >
-  </li> -->
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block" />

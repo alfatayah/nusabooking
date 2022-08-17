@@ -71,11 +71,13 @@
 <script>
   $('#dataTable').on('click', '.button-update', function () {
     let id = $(this).data('id');
+    let no_member = $(this).data('no_member');
     let nik = $(this).data('nik');
     let name = $(this).data('name');
     let username_ig = $(this).data('username_ig');
     $('#edit-modal').modal('show');
     $('.id').val(id);
+    $('.no_member').val(no_member);
     $('.nik').val(nik);
     $('.name').val(name);
     $('.username_ig').val(username_ig);

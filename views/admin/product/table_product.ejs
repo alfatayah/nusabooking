@@ -1,11 +1,40 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-  <div class="card-header py-3">
+  <div class="card-header py-3" >
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
+    <button style="margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
       <i class="fas fa-plus"></i>
-    </button>
+    </button> 
+    
+
+    <select class="btn btn-primary" id="tipe">
+      <option value=""> Type </option>
+       <option value="Camera">Camera</option>
+       <option value="Tripod">Tripod</option>
+       <option value="Lighting">Lighting</option>
+       <option value="Audio">Audio</option>
+       <option value="Monitor">Monitor</option>
+       <option value="Stabilizer">Stabilizer</option>
+       <option value="Battery">Battery</option>
+       <option value="Charger">Charger</option>
+       <option value="Battery">Battery</option>
+       <option value="SdkCard">Sdk Card</option>
+     </select>
+
+     <select class="btn btn-primary" id="statusFilter">
+      <option value=""> Status </option>
+       <option value="Avalaible">Avalaible</option>
+       <option value="Booked">Booked</option>
+     </select>
+
+
+ 
+
   </div>
+
+
+
+
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

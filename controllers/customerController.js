@@ -31,9 +31,9 @@ module.exports = {
 
   addCustomer: async (req, res) => {
     try {
-      const { nik, name, username_ig } = req.body;
+      const { nik, no_member , name, username_ig } = req.body;
       const newItem = {
-        nik, name, username_ig
+        nik, no_member, name, username_ig
       }
       await tbCustomer.create(newItem);
       req.flash("alertMessage", "Succes Add Customer");
@@ -47,10 +47,11 @@ module.exports = {
   },
 
   editCustomer : async (req, res) => {
-    const {id, nik, name, username_ig  } = req.body;
+    const {id, no_member, nik, name, username_ig  } = req.body;
     try {
       const customer = await tbCustomer.findOne({ _id: id })
       customer.nik = nik;
+      customer.no_member = no_member;
       customer.name = name;
       customer.username_ig = username_ig;
       await customer.save();

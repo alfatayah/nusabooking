@@ -85,3 +85,17 @@
     $('.status_produk').val(status_produk);
   })
 </script>
+
+<script>
+  $(document).ready(function () {
+    var table = $('#dataTable').DataTable();
+
+    $('#tipe').on('change', function () {
+      table.columns(2).search(this.value).draw();
+    });
+    $('#statusFilter').on('change', function () {
+      console.log("this.value " , this.value);
+      table.columns(5).search(this.value).draw();
+    });
+  });
+</script>

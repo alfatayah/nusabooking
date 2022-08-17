@@ -11,29 +11,25 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>No</th>
+            <th>No Member</th>
             <th>NIK</th>
             <th>Nama</th>
             <th>Instagram</th> 
-            <th>Action</th>
+            <th style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>
           <% for(let i = 0; i < customer.length; i++) { %>
           <tr>
-            <td><%= i + 1 %></td>
+            <td><%= customer[i].no_member %></td>
             <td><%= customer[i].nik %></td>
             <td><%= customer[i].name %></td>
             <td><%= customer[i].username_ig %></td>
-            <td>
-              <form action="/admin/customer/<%= customer[i].id %>?_method=DELETE" method="POST">
+            <td style="text-align: center;">
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                data-id="<%= customer[i].id %>" data-nik="<%= customer[i].nik %>"  data-name="<%= customer[i].name %>"
+                data-id="<%= customer[i].id %>" data-nik="<%= customer[i].nik %>"  data-no_member="<%= customer[i].no_member %>"  data-name="<%= customer[i].name %>"
                   data-username_ig="<%= customer[i].username_ig %>" >
                   <i class="fas fa-edit"></i></a>
-                <button type="submit" class="btn btn-danger btn-circle btn-sm">
-                  <i class="fas fa-trash"></i></button>
-              </form>
             </td>
           </tr>
           <% }%>

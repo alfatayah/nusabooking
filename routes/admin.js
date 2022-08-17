@@ -46,7 +46,7 @@ router.put("/user", userController.editUser);
 router.delete('/user/:id', userController.deleteUser);
 
 router.get("/product", productController.viewProduct);
-router.post("/product", uploadSingle, productController.addProduct);
+router.post("/product", productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
 
