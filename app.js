@@ -75,10 +75,8 @@ app.use(
   "/fullcalendar",
   express.static(path.join(__dirname, "node_modules/fullcalendar"))
 );
-app.use(
-  "/@fullcalendar",
-  express.static(path.join(__dirname, "node_modules/@fullcalendar"))
-);
+
+
 
 
 

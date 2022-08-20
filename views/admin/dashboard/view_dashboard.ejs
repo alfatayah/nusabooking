@@ -19,18 +19,7 @@
               </button>
 
               <!-- Topbar Search -->
-              <form action="/admin/dashboard/addBook" method="POST"
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                  <input type="text" name="barcode" class="form-control bg-light border-0 small"
-                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required>
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                      <i class="fas fa-search fa-sm"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
+
 
               <!-- Topbar Navbar -->
               <ul class="navbar-nav ml-auto">
@@ -66,11 +55,43 @@
                 <!-- Page Heading -->
                 <!-- <h1 class="h3 mb-4 text-gray-800">Dashboard</h1> -->
 
+                <div class="row">
+                  <div class="col-3">
+                    <div id='external-events'>
+                      <p>
+                        <strong>Draggable Events</strong>
+                      </p>
 
-                <!-- Content Row -->
-                <div id='calendar'></div>
+                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>My Event 1</div>
+                      </div>
+                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>My Event 2</div>
+                      </div>
+                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>My Event 3</div>
+                      </div>
+                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>My Event 4</div>
+                      </div>
+                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>My Event 5</div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-sm-9">
+                    <div id='calendar'></div>
+                  </div>
+
+                </div>
+
+
+
+
                 <!-- /.container-fluid -->
             </div>
+
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -110,16 +131,152 @@
             </div>
           </div>
         </div>
-        <%- include('../../partials/dash.ejs') %>
   </body>
 
+  <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 
+  <style>
+    .popper,
+    .tooltip {
+      position: absolute;
+      z-index: 9999;
+      background: #FFC107;
+      color: black;
+      width: 150px;
+      border-radius: 3px;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      text-align: center;
+      opacity: 1;
+    }
+
+    .tooltip-inner {
+      background-color: transparent;
+    }
+
+    .style5 .tooltip {
+      background: #1E252B;
+      color: #FFFFFF;
+      max-width: 200px;
+      width: auto;
+      font-size: .8rem;
+      padding: .5em 1em;
+    }
+
+    .popper .popper__arrow,
+    .tooltip .tooltip-arrow {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      position: absolute;
+      margin: 5px;
+    }
+
+    .tooltip .tooltip-arrow,
+    .popper .popper__arrow {
+      border-color: #FFC107;
+    }
+
+    .style5 .tooltip .tooltip-arrow {
+      border-color: #1E252B;
+    }
+
+    .popper[x-placement^="top"],
+    .tooltip[x-placement^="top"] {
+      margin-bottom: 5px;
+    }
+
+    .popper[x-placement^="top"] .popper__arrow,
+    .tooltip[x-placement^="top"] .tooltip-arrow {
+      border-width: 5px 5px 0 5px;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      bottom: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .popper[x-placement^="bottom"],
+    .tooltip[x-placement^="bottom"] {
+      margin-top: 5px;
+    }
+
+    .tooltip[x-placement^="bottom"] .tooltip-arrow,
+    .popper[x-placement^="bottom"] .popper__arrow {
+      border-width: 0 5px 5px 5px;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      top: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .tooltip[x-placement^="right"],
+    .popper[x-placement^="right"] {
+      margin-left: 5px;
+    }
+
+    .popper[x-placement^="right"] .popper__arrow,
+    .tooltip[x-placement^="right"] .tooltip-arrow {
+      border-width: 5px 5px 5px 0;
+      border-left-color: transparent;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      left: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .popper[x-placement^="left"],
+    .tooltip[x-placement^="left"] {
+      margin-right: 5px;
+    }
+
+    .popper[x-placement^="left"] .popper__arrow,
+    .tooltip[x-placement^="left"] .tooltip-arrow {
+      border-width: 5px 0 5px 5px;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      right: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  </style>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+
+    document.addEventListener('DOMContentLoaded', function () {
+
       var calendarEl = document.getElementById('calendar');
+      var Draggable = FullCalendar.Draggable;
+
+      var containerEl = document.getElementById('external-events');
+      var checkbox = document.getElementById('drop-remove');
+      new Draggable(containerEl, {
+        itemSelector: '.fc-event',
+        eventData: function (eventEl) {
+          return {
+            title: eventEl.innerText
+          };
+        }
+      });
+
+
+
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        // plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrapPlugin ],
-            // plugins: [ dayGridPlugin ],
+
+        dayMaxEventRows: true, // for all non-TimeGrid views
+   
+
+        selectable: true,
+
         initialView: 'dayGridMonth',
         editable: true,
         themeSystem: 'bootstrap',
@@ -129,69 +286,82 @@
           right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
         },
         navLinks: true, // can click day/week names to navigate views
-        dayMaxEvents: true, // allow "more" link when too many events
+        droppable: true,
+        eventTimeFormat: { // like '14:30:00'
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true
+        },
+        eventDidMount: function (info) {
+          var tooltip = new Tooltip(info.el, {
+            title: info.event.extendedProps.description,
+            placement: 'top',
+            trigger: 'hover',
+            container: 'body'
+          });
+        },
+
+        eventResize: function (info) {
+          alert(info.event.title + " end is now " + info.event.end.toISOString());
+
+          if (!confirm("is this okay?")) {
+            info.revert();
+          }
+        },
+        eventDrop: function (info) {
+          alert(info.event.title + " was dropped on " + info.event.start.toISOString());
+
+          if (!confirm("Are you sure about this change?")) {
+            info.revert();
+          }
+
+        },
+
+        drop: function (info) {
+          alert(info)
+        },
+        titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+          month: 'long',
+          hour12: false,
+        },
+
         events: [
-      {
-        title: 'All Day Event',
-        start: '2018-01-01',
-      },
-      {
-        title: 'Long Event',
-        start: '2018-01-07',
-        end: '2018-01-10'
-      },
-      {
-        groupId: 999,
-        title: 'Repeating Event',
-        start: '2018-01-09T16:00:00'
-      },
-      {
-        groupId: 999,
-        title: 'Repeating Event',
-        start: '2018-01-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: '2018-01-11',
-        end: '2018-01-13'
-      },
-      {
-        title: 'Meeting',
-        start: '2018-01-12T10:30:00',
-        end: '2018-01-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2018-01-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2018-01-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: '2018-01-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: '2018-01-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2018-01-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: '2018-01-28'
-      }
-    ]
+          {
+            title: 'Camera 1',
+            description: 'description for Long Event',
+            start: '2018-08-01 11:00',            end: '2022-08-02 11:00'
+          },
+          {
+            title: 'Camera 2',
+            description: 'description for Long Event',
+            start: '2018-08-03 11:00',
+            end: '2022-08-04 11:00'
+          },
+          {
+            title: 'Camera DSLR 300',
+            description: 'description for Long Event',
+            start: '2022-08-17',
+            end: '2022-08-18'
+          },
+          {
+            title: 'Click for Google',
+            description: 'description for Long Event',
+            start: '2022-08-20',
+            end: '2022-08-22'
+          },
+          {
+            title: 'Long Event',
+            description: 'description for Long Event',
+            start: '2022-08-07',
+            end: '2022-08-10'
+          },
+        ]
+
       });
+
       calendar.render();
     });
 
   </script>
 
   </html>
-
-  
