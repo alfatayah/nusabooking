@@ -9,10 +9,6 @@
     "jsdoc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
-    "@fullcalendar/core": "^5.11.2",
-    "@fullcalendar/daygrid": "^5.11.2",
-    "@fullcalendar/list": "^5.11.2",
-    "@fullcalendar/timegrid": "^5.11.2",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
