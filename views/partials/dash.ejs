@@ -1,19 +1,7 @@
 <!-- Bootstrap core JavaScript-->
-<script src="/sb-admin-2/vendor/jquery/jquery.min.js"></script>
-<script src="/sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="/sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="/sb-admin-2/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<!-- <script src="/sb-admin-2/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
-
-<!-- Page level custom scripts -->
-<!-- <script src="/sb-admin-2/js/demo/datatables-demo.js"></script> -->
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
 
@@ -32,11 +20,12 @@
 <!-- seacrh and input combo box -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
-
 <script>
-  $('#select2').select2();
+  $('#customerID').select2();
+  $('#productID').select2();
 </script>
+
+
 <!-- script date range -->
 <script>
   $(function () {
@@ -84,44 +73,7 @@
 
 
 <!-- script untuk search -->
-<script>
-  function myFunction() {
-    var input, filter, cards, cardContainer, h5, title, i;
-    input = document.getElementById("myFilter");
-    filter = input.value.toUpperCase();
-    cardContainer = document.getElementById("myItems");
-    cards = cardContainer.getElementsByClassName("card");
-    for (i = 0; i < cards.length; i++) {
-      title = cards[i].querySelector(".card-body");
-      if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-        cards[i].style.display = "";
-      } else {
-        cards[i].style.display = "none";
-      }
-    }
-  }
-</script>
 
-<script>
-  function onChangeDiskon() {
-    let diskon = document.getElementById("discountValue").value;
-    var output = diskon.split('^');
-    var diskonID = output[0];
-    var amount = output[1];
-    document.getElementById("diskonID").value = diskonID;
-    document.getElementById("total_discount").value = amount;
-    var subtotal = parseInt(document.getElementById("subtotal").value);
-    var days = document.getElementById("days").value
-    if (days) {
-      var finalTotal = subtotal * days - amount
-      document.getElementById('total').value = finalTotal;
-    } else {
-      var finalTotal2 = subtotal - amount
-      document.getElementById('total').value = finalTotal2;
-    }
-  }
- 
-</script>
 
 
 

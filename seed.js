@@ -16,6 +16,7 @@ seeder.connect(localDB, {
     './models/customer',
     './models/merk',
     './models/product',
+    './models/booking',
     './models/transaction',
     './models/transaction_detail',
     './models/type',
@@ -27,7 +28,7 @@ seeder.connect(localDB, {
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['user' , 'customer', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment'  ], function () {
+  seeder.clearModels(['user' , 'customer', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment', 'booking'  ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -67,11 +68,17 @@ var data = [
     'model': 'customer',
     'documents': [
       {
-        
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
         no_member: 'NK000001',
         nik: 21312312313123,
         name: 'fadhil',
+        username_ig: '@alfatayah',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b91300fc903315'),
+        no_member: 'NK000002',
+        nik: 21312312313123,
+        name: 'bobi',
         username_ig: '@alfatayah',
       },
     
@@ -169,6 +176,36 @@ var data = [
     ]
   },
   {
+    'model': 'booking',
+    'documents': [  
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
+        product_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01') },
+        ],
+        customer_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
+        user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
+
+        start_date: '2022-08-22 11:00',
+        end_date: '2022-08-23 12:00',
+        lokasi_pengambilan: 'Cipadung',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc102445'),
+        product_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01') },
+        ],
+        customer_id: mongoose.Types.ObjectId('5e96cbe292b91300fc903315'),
+        user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
+        start_date: '2022-08-24 11:00',
+        end_date: '2022-08-25 12:00',
+        lokasi_pengambilan: 'DU',
+      },
+    ]
+  },
+  {
     'model': 'cash_payment',
     'documents': [  
       {
@@ -223,7 +260,8 @@ var data = [
         transdetail_id: mongoose.Types.ObjectId('1396cbe292b97300fc101245'),
       },
     ]
-  }
+  },
+  
 ]
 
 

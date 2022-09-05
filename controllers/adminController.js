@@ -5,9 +5,10 @@ const users = require('../models/user');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbTransDetail = require('../models/transaction_detail')
-// const tbMember = require('../models/customer');
+const tbCustomer = require('../models/customer');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
+const tbBooking = require('../models/booking');
 const { v4: uuidv4 } = require('uuid');
 var mongoose = require('mongoose');
 var moment = require('moment');  
@@ -116,43 +117,49 @@ module.exports = {
       res.redirect("/admin/merk");
     }
   },
-
- 
-
-
-
-
-  
+//   events: [
+//     {
+//       title: 'Camera 1',
+//       description: 'description for Long Event',
+//       start: '2018-08-01 11:00',      
+//       end: '2022-08-02 11:00'
+//     },
+// ],
   viewDashboard: async (req, res) => {
     try {
-      const product = await tbProduct.find()
-      // const member = await tbMember.find()
-    if( product.length ==  list.length ){
+      const booking = await tbBooking.find()
+      .populate({ path: 'product_id', model: 'product' })
+      .populate({ path: 'customer_id', model: 'customer' , select: 'name'})
+    //  .populate('products')
+      const customer = await tbCustomer.find()
+      const products = await tbProduct.find()
+      // .populate({ path: 'customer_id',})
+      // .populate({ path: 'user_id',})
+      // for (let i = 0; i < booking.length; i++) {
+      //   console.Console.log
+      // }
+    
+
+      // const product = booking.map(x => x.product_id)
+      // const nameCustomer = booking.map(x => x.customer_id).map(y => y.name);
+
+
+      console.log("booking " , booking)
+      // console.log('booking', booking);
+
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
       res.render('admin/dashboard/view_dashboard', {
         title: "Nusa | Dashboard",
         user: req.session.user,
-        product,
-        // member,
+        booking,
+        customer,
+        products,
+        // nameCustomer: nameCustomer,
         alert,
-        list
       });
-    } else{
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus };
-      
-      res.render('admin/dashboard/view_dashboard', {
-        title: "Nusa | Dashboard",
-        user: req.session.user,
-        product,
-        // member,
-        alert,
-        list
-      });
-    }
+    
     } catch (error) {
       console.log("error " , error);
       req.flash("alertMessage", `${error.message}`);

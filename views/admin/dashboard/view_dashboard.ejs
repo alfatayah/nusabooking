@@ -17,10 +17,7 @@
               <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
               </button>
-
               <!-- Topbar Search -->
-
-
               <!-- Topbar Navbar -->
               <ul class="navbar-nav ml-auto">
                 <div class="topbar-divider d-none d-sm-block"></div>
@@ -51,45 +48,50 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
               <%- include('../../partials/message.ejs') %>
-
                 <!-- Page Heading -->
-                <!-- <h1 class="h3 mb-4 text-gray-800">Dashboard</h1> -->
-
+                <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
                 <div class="row">
                   <div class="col-3">
-                    <div id='external-events'>
-                      <p>
-                        <strong>Draggable Events</strong>
-                      </p>
+                    <form method="POST">
+                      <div class="form-group">
+                        <label for="name">Customer</label>
+                        <select class="form-control " name="customerID" id="customerID" required>
+                          <option selected disabled value=""> </option>
+                          <% for(var i=0; i < customer.length; i++){ %>
+                            <option value=<%=customer[i]._id %> ><%= customer[i].name %>
+                            </option>
+                            <% } %>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Pick Dates</label>
+                        <input class="form-control " type="text" name="datetimes" autocomplete="off" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Producs</label>
+                        <select  id="productID"  onchange="selectedProduk(this)" class="form-control " required>
+                          <option selected disabled value=""> </option>
+                          <% for(var i=0; i < products.length; i++){ %>
+                       
+                            <option data-item="<%= products[i].product_name %>" value=<%=products[i]._id %> ><%= products[i].product_name %>
+                            </option>
+                            <% } %>
+                        </select>
+                      </div>
+                      <div id="experienceSection"></div>
+                      <input type="hidden" id="productLength" value="<%= products.length %>">
+                      <input type="hidden" id="bookingData" value="<%= JSON.stringify(booking)  %>">
+                   
 
-                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>My Event 1</div>
-                      </div>
-                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>My Event 2</div>
-                      </div>
-                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>My Event 3</div>
-                      </div>
-                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>My Event 4</div>
-                      </div>
-                      <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>My Event 5</div>
-                      </div>
 
-                    </div>
+                    </form>
                   </div>
                   <div class="col-sm-9">
+                    <!-- <div id='idbooking'  data-idbooking="hello" ></div> -->
                     <div id='calendar'></div>
                   </div>
 
                 </div>
-
-
-
-
-                <!-- /.container-fluid -->
             </div>
 
             <!-- End of Main Content -->
@@ -133,235 +135,284 @@
         </div>
   </body>
 
-  <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-  <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+  <%- include('../../partials/dash.ejs') %>
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
 
-  <style>
-    .popper,
-    .tooltip {
-      position: absolute;
-      z-index: 9999;
-      background: #FFC107;
-      color: black;
-      width: 150px;
-      border-radius: 3px;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      text-align: center;
-      opacity: 1;
-    }
-
-    .tooltip-inner {
-      background-color: transparent;
-    }
-
-    .style5 .tooltip {
-      background: #1E252B;
-      color: #FFFFFF;
-      max-width: 200px;
-      width: auto;
-      font-size: .8rem;
-      padding: .5em 1em;
-    }
-
-    .popper .popper__arrow,
-    .tooltip .tooltip-arrow {
-      width: 0;
-      height: 0;
-      border-style: solid;
-      position: absolute;
-      margin: 5px;
-    }
-
-    .tooltip .tooltip-arrow,
-    .popper .popper__arrow {
-      border-color: #FFC107;
-    }
-
-    .style5 .tooltip .tooltip-arrow {
-      border-color: #1E252B;
-    }
-
-    .popper[x-placement^="top"],
-    .tooltip[x-placement^="top"] {
-      margin-bottom: 5px;
-    }
-
-    .popper[x-placement^="top"] .popper__arrow,
-    .tooltip[x-placement^="top"] .tooltip-arrow {
-      border-width: 5px 5px 0 5px;
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      bottom: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    .popper[x-placement^="bottom"],
-    .tooltip[x-placement^="bottom"] {
-      margin-top: 5px;
-    }
-
-    .tooltip[x-placement^="bottom"] .tooltip-arrow,
-    .popper[x-placement^="bottom"] .popper__arrow {
-      border-width: 0 5px 5px 5px;
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-top-color: transparent;
-      top: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    .tooltip[x-placement^="right"],
-    .popper[x-placement^="right"] {
-      margin-left: 5px;
-    }
-
-    .popper[x-placement^="right"] .popper__arrow,
-    .tooltip[x-placement^="right"] .tooltip-arrow {
-      border-width: 5px 5px 5px 0;
-      border-left-color: transparent;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      left: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .popper[x-placement^="left"],
-    .tooltip[x-placement^="left"] {
-      margin-right: 5px;
-    }
-
-    .popper[x-placement^="left"] .popper__arrow,
-    .tooltip[x-placement^="left"] .tooltip-arrow {
-      border-width: 5px 0 5px 5px;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      right: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-  </style>
-  <script>
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-      var calendarEl = document.getElementById('calendar');
-      var Draggable = FullCalendar.Draggable;
-
-      var containerEl = document.getElementById('external-events');
-      var checkbox = document.getElementById('drop-remove');
-      new Draggable(containerEl, {
-        itemSelector: '.fc-event',
-        eventData: function (eventEl) {
-          return {
-            title: eventEl.innerText
-          };
+    <script>
+        let dataArr = [];
+        let key = 1;
+      function selectedProduk(e) {
+        let selected = e.options[e.selectedIndex].getAttribute("data-item");
+        const check =  dataArr.includes(selected)
+  
+        if(check == false){
+          dataArr.push(selected);
+          let numbering = key++;
+          localStorage.setItem('dataProduct', dataArr);
+          let data = localStorage.getItem('dataProduct');
+      
+          var $section =  $(' <input id="item'+ numbering +'" type="text" disabled="disabled" class="form-control"  />');
+          $('#experienceSection').append($section);
+          document.getElementById("item" + numbering).value = e.options[e.selectedIndex].getAttribute("data-item");
         }
+ 
+      }
+    </script>
+
+    <style>
+      .popper,
+      .tooltip {
+        position: absolute;
+        z-index: 9999;
+        background: #FFC107;
+        color: black;
+        width: 150px;
+        border-radius: 3px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        text-align: center;
+        opacity: 1;
+      }
+
+      .tooltip-inner {
+        background-color: transparent;
+      }
+
+      .style5 .tooltip {
+        background: #1E252B;
+        color: #FFFFFF;
+        max-width: 200px;
+        width: auto;
+        font-size: .8rem;
+        padding: .5em 1em;
+      }
+
+      .popper .popper__arrow,
+      .tooltip .tooltip-arrow {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        position: absolute;
+        margin: 5px;
+      }
+
+      .tooltip .tooltip-arrow,
+      .popper .popper__arrow {
+        border-color: #FFC107;
+      }
+
+      .style5 .tooltip .tooltip-arrow {
+        border-color: #1E252B;
+      }
+
+      .popper[x-placement^="top"],
+      .tooltip[x-placement^="top"] {
+        margin-bottom: 5px;
+      }
+
+      .popper[x-placement^="top"] .popper__arrow,
+      .tooltip[x-placement^="top"] .tooltip-arrow {
+        border-width: 5px 5px 0 5px;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        bottom: -5px;
+        left: calc(50% - 5px);
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .popper[x-placement^="bottom"],
+      .tooltip[x-placement^="bottom"] {
+        margin-top: 5px;
+      }
+
+      .tooltip[x-placement^="bottom"] .tooltip-arrow,
+      .popper[x-placement^="bottom"] .popper__arrow {
+        border-width: 0 5px 5px 5px;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+        top: -5px;
+        left: calc(50% - 5px);
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .tooltip[x-placement^="right"],
+      .popper[x-placement^="right"] {
+        margin-left: 5px;
+      }
+
+      .popper[x-placement^="right"] .popper__arrow,
+      .tooltip[x-placement^="right"] .tooltip-arrow {
+        border-width: 5px 5px 5px 0;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        left: -5px;
+        top: calc(50% - 5px);
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .popper[x-placement^="left"],
+      .tooltip[x-placement^="left"] {
+        margin-right: 5px;
+      }
+
+      .popper[x-placement^="left"] .popper__arrow,
+      .tooltip[x-placement^="left"] .tooltip-arrow {
+        border-width: 5px 0 5px 5px;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        right: -5px;
+        top: calc(50% - 5px);
+        margin-left: 0;
+        margin-right: 0;
+      }
+    </style>
+    <script>
+      let newData = document.getElementById('bookingData').value;
+      let dataParse = JSON.parse(newData)
+      // console.log("dataParse " , dataParse)
+ 
+      let dataArray = []
+      let dataName = []
+      dataParse.forEach(element => {
+        // console.log("element" , element)
+        element.product_id.forEach(result => {
+           dataName.push(result.product_name)
+        });
+      });
+      let uniqueChars = [...new Set(dataName)];
+      dataParse.forEach(result => {
+        var objEvent = {
+          title: result.customer_id.name,
+          description: "tempat pengambilan : " + result.lokasi_pengambilan,
+          start: result.start_date,
+          end: result.end_date,
+        };
+        dataArray.push(objEvent);
+  
       });
 
+      document.addEventListener('DOMContentLoaded', function () {
+
+        var calendarEl = document.getElementById('calendar');
+        var Draggable = FullCalendar.Draggable;
+
+        // var containerEl = document.getElementById('external-events');
+        // var checkbox = document.getElementById('drop-remove');
+        // new Draggable(containerEl, {
+        //   itemSelector: '.fc-event',
+        //   eventData: function (eventEl) {
+        //     return {
+        //       title: eventEl.innerText
+        //     };
+        //   }
+        // });
 
 
-      var calendar = new FullCalendar.Calendar(calendarEl, {
 
-        dayMaxEventRows: true, // for all non-TimeGrid views
-   
+        var calendar = new FullCalendar.Calendar(calendarEl, {
 
-        selectable: true,
+          dayMaxEventRows: true, // for all non-TimeGrid views
 
-        initialView: 'dayGridMonth',
-        editable: true,
-        themeSystem: 'bootstrap',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-        },
-        navLinks: true, // can click day/week names to navigate views
-        droppable: true,
-        eventTimeFormat: { // like '14:30:00'
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true
-        },
-        eventDidMount: function (info) {
-          var tooltip = new Tooltip(info.el, {
-            title: info.event.extendedProps.description,
-            placement: 'top',
-            trigger: 'hover',
-            container: 'body'
-          });
-        },
 
-        eventResize: function (info) {
-          alert(info.event.title + " end is now " + info.event.end.toISOString());
+          selectable: true,
 
-          if (!confirm("is this okay?")) {
-            info.revert();
-          }
-        },
-        eventDrop: function (info) {
-          alert(info.event.title + " was dropped on " + info.event.start.toISOString());
-
-          if (!confirm("Are you sure about this change?")) {
-            info.revert();
-          }
-
-        },
-
-        drop: function (info) {
-          alert(info)
-        },
-        titleFormat: { // will produce something like "Tuesday, September 18, 2018"
-          month: 'long',
-          hour12: false,
-        },
-
-        events: [
-          {
-            title: 'Camera 1',
-            description: 'description for Long Event',
-            start: '2018-08-01 11:00',            end: '2022-08-02 11:00'
+          initialView: 'dayGridMonth',
+          editable: true,
+          themeSystem: 'bootstrap',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
           },
-          {
-            title: 'Camera 2',
-            description: 'description for Long Event',
-            start: '2018-08-03 11:00',
-            end: '2022-08-04 11:00'
+          navLinks: true, // can click day/week names to navigate views
+          droppable: true,
+          eventTimeFormat: { // like '14:30:00'
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
           },
-          {
-            title: 'Camera DSLR 300',
-            description: 'description for Long Event',
-            start: '2022-08-17',
-            end: '2022-08-18'
+          eventDidMount: function (info) {
+            var tooltip = new Tooltip(info.el, {
+              title: info.event.extendedProps.description,
+              placement: 'top',
+              trigger: 'hover',
+              container: 'body'
+            });
           },
-          {
-            title: 'Click for Google',
-            description: 'description for Long Event',
-            start: '2022-08-20',
-            end: '2022-08-22'
-          },
-          {
-            title: 'Long Event',
-            description: 'description for Long Event',
-            start: '2022-08-07',
-            end: '2022-08-10'
-          },
-        ]
 
+          eventResize: function (info) {
+            alert(info.event.title + " end is now " + info.event.end.toISOString());
+
+            if (!confirm("is this okay?")) {
+              info.revert();
+            }
+          },
+          eventDrop: function (info) {
+            alert(info.event.title + " was dropped on " + info.event.start.toISOString());
+
+            if (!confirm("Are you sure about this change?")) {
+              info.revert();
+            }
+
+          },
+
+          drop: function (info) {
+            alert(info)
+          },
+          titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+            month: 'long',
+            hour12: false,
+          },
+          events: dataArray,
+
+
+
+          // events: [
+          //   {
+          //     title: 'Camera 1',
+          //     description: 'description for Long Event',
+          //     start: '2018-08-01 11:00',      
+          //     end: '2022-08-02 11:00'
+          //   },
+          //   {
+          //     title: 'Camera 2',
+          //     description: 'description for Long Event',
+          //     start: '2018-08-03 11:00',
+          //     end: '2022-08-04 11:00'
+          //   },
+          //   {
+          //     title: 'Camera DSLR 300',
+          //     description: 'description for Long Event',
+          //     start: '2022-08-17',
+          //     end: '2022-08-18'
+          //   },
+          //   {
+          //     title: 'Click for Google',
+          //     description: 'description for Long Event',
+          //     start: '2022-08-20',
+          //     end: '2022-08-22'
+          //   },
+          //   {
+          //     title: 'Long Event',
+          //     description: 'description for Long Event',
+          //     start: '2022-08-07',
+          //     end: '2022-08-10'
+          //   },
+          // ]
+
+        });
+
+        calendar.render();
       });
 
-      calendar.render();
-    });
+    </script>
 
-  </script>
-
-  </html>
+    </html>
