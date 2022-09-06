@@ -78,7 +78,9 @@
                             <% } %>
                         </select>
                       </div>
-                      <div id="experienceSection"></div>
+                      <div id="productSection"></div>
+                     
+
                       <input type="hidden" id="productLength" value="<%= products.length %>">
                       <input type="hidden" id="bookingData" value="<%= JSON.stringify(booking)  %>">
                    
@@ -152,11 +154,21 @@
           localStorage.setItem('dataProduct', dataArr);
           let data = localStorage.getItem('dataProduct');
       
-          var $section =  $(' <input id="item'+ numbering +'" type="text" disabled="disabled" class="form-control"  />');
-          $('#experienceSection').append($section);
+          var $section =  $('  <div id="section'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" class="form-control" > <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
+          $('#productSection').append($section);
           document.getElementById("item" + numbering).value = e.options[e.selectedIndex].getAttribute("data-item");
         }
- 
+      }
+
+      function removeItem (number){
+        let element = document.getElementById("section" + number);
+        let dataRemove = document.getElementById("item" + number).value;
+        element.remove();
+        const index = dataArr.indexOf(dataRemove);
+        if (index > -1) { // only splice array when item is found
+          dataArr.splice(index, 1); // 2nd parameter means remove one item onl
+        }
+     
       }
     </script>
 
