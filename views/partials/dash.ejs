@@ -30,7 +30,7 @@
 <script>
   $(function () {
     $('input[name="datetimes"]').daterangepicker({
-      // timePicker: true,
+      timePicker: true,
       autoUpdateInput: false,
       minDate: new Date(),
       startDate: new Date(),
@@ -42,24 +42,16 @@
       if(picker.startDate.format('DD-MMM-YY') == picker.endDate.format('DD-MMM-YY')){
         $(this).val('');
       }else{
-        $(this).val(picker.startDate.format('DD-MMM-YY') + ' - ' + picker.endDate.format('DD-MMM-YY'));
+        $(this).val(picker.startDate.format('DD-MM-YY hh:mm') + ' - ' + picker.endDate.format('DD-MM-YY hh:mm'));
         var start = moment(picker.startDate.format('DD-MMM-YY'));
         var end = moment(picker.endDate.format('DD-MMM-YY'));
         var diff = end.diff(start, 'days');
         $("#days").val(diff);
   
-        document.getElementById('start_date').value = picker.startDate.format('DD-MMM-YY') + moment().format(' hh:mm');
-        document.getElementById('end_date').value = picker.endDate.format('DD-MMM-YY') + moment().format(' hh:mm');
+        // document.getElementById('start_date').value = picker.startDate.format('DD-MMM-YY') + moment().format(' hh:mm');
+        // document.getElementById('end_date').value = picker.endDate.format('DD-MMM-YY') + moment().format(' hh:mm');
         
-        let totalDiskon = document.getElementById("total_discount").value
-        var subtotal = parseInt(document.getElementById("subtotal").value);
-        if(totalDiskon){
-          var finalTotal = subtotal * diff - totalDiskon
-          document.getElementById('total').value = finalTotal;
-        } else {
-          var finalTotal2 = subtotal * diff;
-          document.getElementById('total').value = finalTotal2;
-        }
+    
       }
     })
 

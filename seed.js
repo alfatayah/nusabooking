@@ -132,15 +132,13 @@ var data = [
         tipe: "Camera",
         price: 12000,
         barcode: 'BR12345',
-        status_produk:"Avalaible",
       },
       {
-        _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01'),
+        _id: mongoose.Types.ObjectId('4e96cbe292b37300fc90bb01'),
         product_name: 'Canon D300',
         tipe: "Lighting",
         price: 12000,
         barcode: 'BR121345',
-        status_produk:"Booked",
       },
     ]
   },

@@ -18,10 +18,9 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  status_produk: {
+  dateBooked:[{
     type: String,
-    required: true
-  },
+  }]
   
 })
 
