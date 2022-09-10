@@ -149,9 +149,10 @@ module.exports = {
 
   addBook: async (req, res) => {
     const {user_id, customer_id , datetimes, productbook, statusPenempatan, start_date, end_date} = req.body;
-
+    // Change data string to array example '0,1' => ['0','1']
+    var arrProduct = productbook.split(",").map(x => x);
     const newData = {
-      product_id : productbook,
+      product_id : arrProduct,
       customer_id,
       user_id,
       start_date, 

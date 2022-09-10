@@ -67,8 +67,8 @@
         var diff = end.diff(start, 'days');
         $("#days").val(diff);
   
-        document.getElementById('start_date').value = picker.startDate.format('DD-MM-YY') + moment().format(' hh:mm');
-        document.getElementById('end_date').value = picker.endDate.format('DD-MM-YY') + moment().format(' hh:mm');
+        document.getElementById('start_date').value = picker.startDate.format('YYYY-MM-DD') + moment().format(' hh:mm');
+        document.getElementById('end_date').value = picker.endDate.format('YYYY-MM-DD') + moment().format(' hh:mm');
         
     
       }

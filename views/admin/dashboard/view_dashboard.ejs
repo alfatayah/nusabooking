@@ -88,7 +88,7 @@
                         </select>
                      </div>
                      <input  type="hidden" class="form-control" value="<%= user.id %>" name="user_id" id="user_id" />
-                       <input  type="hidden" class="form-control" name="productbook" id="productbook"/>
+                       <input  type="hidden" class="form-control" name="productbook" id="productbook" />
                        <input  type="hidden" class="form-control" name="start_date" id="start_date" />
                        <input  type="hidden" class="form-control" name="end_date" id="end_date" />
                       <input type="hidden" id="bookingData" value="<%= JSON.stringify(booking)  %>" />
@@ -162,8 +162,10 @@
           // NOTE: di dalam string nya gue kasih delimeter ^ [0] = nama produk [1] = id produk
           dataArr.push(selected.split('^')[0]);
           dataid.push(selected.split('^')[1])
+     
           let numbering = key++;
-          document.getElementById('productbook').value = dataid;
+          let testproduct = document.getElementById('productbook').value = dataid;
+          console.log("testproduct", testproduct)
           var $section =  $('  <div id="section'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
           $('#productSection').append($section);
           document.getElementById("item" + numbering).value = selected.split('^')[0];
@@ -314,12 +316,10 @@
     <script>
       let newData = document.getElementById('bookingData').value;
       let dataParse = JSON.parse(newData)
-      // console.log("dataParse " , dataParse)
  
       let dataArray = []
       let dataName = []
       dataParse.forEach(element => {
-        // console.log("element" , element)
         element.product_id.forEach(result => {
            dataName.push(result.product_name)
         });
@@ -365,9 +365,9 @@
           editable: true,
           themeSystem: 'bootstrap',
           headerToolbar: {
-            left: 'prev,next today',
+            left: 'prevYear,prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth,nextYear',
           },
           navLinks: true, // can click day/week names to navigate views
           droppable: true,
@@ -406,6 +406,7 @@
           },
           titleFormat: { // will produce something like "Tuesday, September 18, 2018"
             month: 'long',
+            year: 'numeric',
             hour12: false,
           },
           events: dataArray,
