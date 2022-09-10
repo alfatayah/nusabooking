@@ -117,35 +117,13 @@ module.exports = {
       res.redirect("/admin/merk");
     }
   },
-//   events: [
-//     {
-//       title: 'Camera 1',
-//       description: 'description for Long Event',
-//       start: '2018-08-01 11:00',      
-//       end: '2022-08-02 11:00'
-//     },
-// ],
   viewDashboard: async (req, res) => {
     try {
       const booking = await tbBooking.find()
       .populate({ path: 'product_id', model: 'product' })
       .populate({ path: 'customer_id', model: 'customer' , select: 'name'})
-    //  .populate('products')
       const customer = await tbCustomer.find()
       const products = await tbProduct.find()
-      // .populate({ path: 'customer_id',})
-      // .populate({ path: 'user_id',})
-      // for (let i = 0; i < booking.length; i++) {
-      //   console.Console.log
-      // }
-    
-
-      // const product = booking.map(x => x.product_id)
-      // const nameCustomer = booking.map(x => x.customer_id).map(y => y.name);
-
-
-      console.log("booking " , booking)
-      // console.log('booking', booking);
 
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -156,7 +134,6 @@ module.exports = {
         booking,
         customer,
         products,
-        // nameCustomer: nameCustomer,
         alert,
       });
     
@@ -167,42 +144,26 @@ module.exports = {
       res.redirect('/admin/dashboard');
     }
   },
-  
+
+
 
   addBook: async (req, res) => {
-    const { barcode } = req.body;
-    const productSearch = await tbProduct.findOne({ barcode: barcode , status: 'AVALAIBLE' })
-    .populate("discount_id")
+    const {user_id, customer_id , datetimes, productbook, statusPenempatan, start_date, end_date} = req.body;
 
+    const newData = {
+      product_id : productbook,
+      customer_id,
+      user_id,
+      start_date, 
+      end_date,
+      lokasi_pengambilan: statusPenempatan,
+    }
+    console.log("newData" , newData);
     try {       
-      //ini ulang dari render view
-      const product = await tbProduct.find()
-      .populate({ path: 'discount_id', select: 'typeDiscount amount' })
-      
-      // const member = await tbMember.find()
-      const discount = await tbDiscount.find();
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus };
-
-
-      const mapList = list.map(x => x.barcode)
-      if(!productSearch ||  mapList.includes(barcode) ){
-        req.flash("alertMessage", "Product already choose or not avalaible");
-        req.flash("alertStatus", "danger");
-        res.redirect(`/admin/dashboard`);
-      } else {
-        list.push(productSearch);
-        res.render('admin/dashboard/view_dashboard', {
-          title: "Nusa | Dashboard",
-          user: req.session.user,
-          product,
-          list,
-          // member,
-          discount,
-          alert
-        });
-      }
+      await tbBooking.create(newData);  
+      req.flash("alertMessage", "Succes Add Booking");
+      req.flash("alertStatus", "success");
+      res.redirect(`/admin/dashboard`);
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
