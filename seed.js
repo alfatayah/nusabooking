@@ -71,15 +71,15 @@ var data = [
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
         no_member: 'NK000001',
         nik: 21312312313123,
-        name: 'fadhil',
+        name: 'Fadhillah Alfatayah Rizqan',
         username_ig: '@alfatayah',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b91300fc903315'),
         no_member: 'NK000002',
         nik: 21312312313123,
-        name: 'bobi',
-        username_ig: '@alfatayah',
+        name: 'Bobi Hendra',
+        username_ig: '@bobi',
       },
     
     ]
