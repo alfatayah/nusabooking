@@ -1,5 +1,6 @@
 <ul
-  class="navbar-nav bg-gradient-primary  sidebar sidebar-dark accordion"
+style="background-color: #000000"
+  class="navbar-nav   sidebar sidebar-dark accordion"
   id="accordionSidebar"
 >
   <!-- Sidebar - Brand -->
@@ -8,9 +9,9 @@
     href=""
   >
     <div class="sidebar-brand-icon rotate-n-15">
-      <i   class="fas fa-camera-retro"></i>
+      <i   style="color: #F04819";   class="fas fa-camera-retro"></i>
     </div>
-    <div  class="sidebar-brand-text mx-3">NusaKamera</div>
+    <div  style="color: #F04819";   class="sidebar-brand-text mx-3">NusaKamera</div>
   </a>
 
   <!-- Divider -->
@@ -19,30 +20,37 @@
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
     <a class="nav-link" href="/admin/dashboard">
-      <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span></a
+      <i style="color: #F04819"; class="fas fa-home"></i>
+      <span style="color: #F04819";>Dashboard</span></a
     >
   </li>
 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/booking">
+        <i style="color: #F04819"; class="fas fa-calendar"></i>
+        <span style="color: #F04819"; >Booking</span></a
+      >
+    </li>
   <!-- Divider -->
-  <hr class="sidebar-divider" />
+  <hr  class="sidebar-divider" />
 
   <!-- Heading -->
-  <div class="sidebar-heading">Master</div>
+  <!-- <div class="sidebar-heading">Master</div> -->
 
   <% if (user.status != 'staff'){  %> 
   <li class="nav-item">
     <a class="nav-link" href="/admin/product">
-      <i class="fas fa-fw fa-camera"></i>
-      <span> Produk</span></a
+      <i style="color: #F04819" class="fas fa-fw fa-camera"></i>
+      <span style="color: #F04819" > Produk</span></a
     >
   <% }%> 
 
  <!-- Nav Item - List Transaksi -->
   <% if (user.status == 'admin'){  %> 
     <li class="nav-item">
-      <a class="nav-link" href="/admin/user">
-        <i class="fas fa-fw fa-user"></i>
+      <a class="nav-link" style="color: #F04819" href="/admin/user">
+        <i class="fas fa-fw fa-user" style="color: #F04819"></i>
         <span> Karyawan</span></a
       >
   <% }%> 
@@ -53,8 +61,8 @@
   <!-- Nav Item - Item -->
   <li class="nav-item">
     <a class="nav-link" href="/admin/customer">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Customer</span></a
+      <i class="fas fa-fw fa-users" style="color: #F04819"></i>
+      <span style="color: #F04819">Customer</span></a
     >
   </li>
 
