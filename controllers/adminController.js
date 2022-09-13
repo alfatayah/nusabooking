@@ -54,7 +54,7 @@ module.exports = {
         res.redirect("/admin/signin");
       }
       
-      if (user.username ==  username && user.password == password) {
+      if (user.username == username && user.password == password) {
         req.session.user = {
           id: user.id,
           username: user.username,
@@ -66,10 +66,7 @@ module.exports = {
         req.flash("alertStatus", "danger");
         res.redirect("/admin/signin");
       }
-     
-
     } catch (error) {
-      res.redirect("/admin/signin");
     }
   },
 
@@ -122,8 +119,10 @@ module.exports = {
       const booking = await tbBooking.find()
       .populate({ path: 'product_id', model: 'product' })
       .populate({ path: 'customer_id', model: 'customer' , select: 'name'})
+      .populate({ path: 'user_id', model: 'user' , select: 'username'})
       const customer = await tbCustomer.find()
       const products = await tbProduct.find()
+      console.log("booking " , booking)
 
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
