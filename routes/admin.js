@@ -20,8 +20,8 @@ router.get("/logout", adminController.actionLogout);
 // ketika login succes akan mengarahkan ke screen view dashboard
 router.get("/dashboard", adminController.viewDashboard);
 router.post("/dashboard/addBook", adminController.addBook);
-router.post("/transaction/addTrans", adminController.addTrans);
-
+router.get("/booking", adminController.viewBooking);
+router.get("/booking/detail/:id", adminController.viewDetailBooking); 
 
 
 router.get("/transaction", transactionController.viewTransaction);

@@ -122,7 +122,6 @@ module.exports = {
       .populate({ path: 'user_id', model: 'user' , select: 'username'})
       const customer = await tbCustomer.find()
       const products = await tbProduct.find()
-      console.log("booking " , booking)
 
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -137,10 +136,90 @@ module.exports = {
       });
     
     } catch (error) {
-      console.log("error " , error);
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
       res.redirect('/admin/dashboard');
+    }
+  },
+
+  viewBooking: async (req, res) => {
+    try {
+      const booking = await tbBooking.find()
+      .populate({ path: 'product_id', model: 'product' })
+      .populate({ path: 'customer_id', model: 'customer' , select: 'name'})
+      .populate({ path: 'user_id', model: 'user' , select: 'username'})
+      const customer = await tbCustomer.find()
+      const products = await tbProduct.find()
+
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/booking/view_booking', {
+        title: "Nusa | Booking",
+        user: req.session.user,
+        booking,
+        customer,
+        products,
+        alert,
+      });
+    
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect('/admin/booking');
+    }
+  },
+
+  showDetailTransaction: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      const trans_detail = await tbTransDetail.findOne({ _id: id })
+        .populate({ path: "transaction_Id", populate: { path: "discountId" } })
+        .populate('dp_id')
+      let transID = trans_detail.transaction_Id._id;
+      const trans = await tbTrans.findOne({ _id: transID })
+        .populate("product_id")
+
+      res.render("admin/transaction/show_detail_transaction", {
+        title: "Staycation | Detail Transaction",
+        user: req.session.user,
+        trans_detail,
+        trans,
+        alert
+      });
+    } catch (error) {
+      res.redirect(`/admin/transaction/detail`);
+    }
+  },
+
+
+  viewDetailBooking: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const detailData = await tbBooking.findOne({_id : id})
+      .populate({ path: 'product_id', model: 'product'})
+      let dataProduct = [];
+      detailData.product_id.forEach(element => {
+         dataProduct.push(element.product_name)
+      });
+
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/booking/view_detail', {
+        title: "Nusa | Detail Booking",
+        user: req.session.user,
+        dataProduct,
+        alert
+      });
+    
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect('/admin/booking');
     }
   },
 
@@ -158,7 +237,6 @@ module.exports = {
       end_date,
       lokasi_pengambilan: statusPenempatan,
     }
-    console.log("newData" , newData);
     try {       
       await tbBooking.create(newData);  
       req.flash("alertMessage", "Succes Add Booking");

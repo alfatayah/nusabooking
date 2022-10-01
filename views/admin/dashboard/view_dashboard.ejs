@@ -180,7 +180,6 @@
      
         let removeData = document.getElementById("item" + number).value;
         let removeId = document.getElementById("itemid" + number).value;
-        console.log("removeId " , removeId)
         document.getElementById("product_id").selectedIndex = 0;
 
         //remove product name dari array dataArr
@@ -206,7 +205,7 @@
         z-index: 9999;
         background: #FFC107;
         color: black;
-        width: 150px;
+        width: 450px;
         border-radius: 3px;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         padding: 10px;
@@ -327,7 +326,7 @@
       let uniqueChars = [...new Set(dataName)];
       dataParse.forEach(result => {
         var objEvent = {
-          description: "tempat pengambilan : " + result.lokasi_pengambilan,
+          description: "Admin : " + result.user_id.username  +"Produk : " + result.user_id.username +  "Tempat pengambilan : " + result.lokasi_pengambilan  ,
           start: result.start_date,
           end: result.end_date,
           title: "B"+result._id.slice(20,25) +" | "+ result.customer_id.name,
@@ -362,7 +361,7 @@
           selectable: true,
 
           initialView: 'dayGridMonth',
-          editable: true,
+          // editable: true,
           themeSystem: 'bootstrap',
           headerToolbar: {
             left: 'prevYear,prev,next today',
@@ -385,67 +384,29 @@
             });
           },
 
-          eventResize: function (info) {
-            alert(info.event.title + " end is now " + info.event.end.toISOString());
+          // eventResize: function (info) {
+          //   alert(info.event.title + " end is now " + info.event.end.toISOString());
 
-            if (!confirm("is this okay?")) {
-              info.revert();
-            }
-          },
-          eventDrop: function (info) {
-            alert(info.event.title + " was dropped on " + info.event.start.toISOString());
+          //   if (!confirm("is this okay?")) {
+          //     info.revert();
+          //   }
+          // },
+          // eventDrop: function (info) {
+          //   alert(info.event.title + " was dropped on " + info.event.start.toISOString());
 
-            if (!confirm("Are you sure about this change?")) {
-              info.revert();
-            }
-
-          },
-
-          drop: function (info) {
-            alert(info)
-          },
+          //   if (!confirm("Are you sure about this change?")) {
+          //     info.revert();
+          //   }
+          // },
+          // drop: function (info) {
+          //   alert(info)
+          // },
           titleFormat: { // will produce something like "Tuesday, September 18, 2018"
             month: 'long',
             year: 'numeric',
             hour12: false,
           },
           events: dataArray,
-
-
-
-          // events: [
-          //   {
-          //     title: 'Camera 1',
-          //     description: 'description for Long Event',
-          //     start: '2018-08-01 11:00',      
-          //     end: '2022-08-02 11:00'
-          //   },
-          //   {
-          //     title: 'Camera 2',
-          //     description: 'description for Long Event',
-          //     start: '2018-08-03 11:00',
-          //     end: '2022-08-04 11:00'
-          //   },
-          //   {
-          //     title: 'Camera DSLR 300',
-          //     description: 'description for Long Event',
-          //     start: '2022-08-17',
-          //     end: '2022-08-18'
-          //   },
-          //   {
-          //     title: 'Click for Google',
-          //     description: 'description for Long Event',
-          //     start: '2022-08-20',
-          //     end: '2022-08-22'
-          //   },
-          //   {
-          //     title: 'Long Event',
-          //     description: 'description for Long Event',
-          //     start: '2022-08-07',
-          //     end: '2022-08-10'
-          //   },
-          // ]
-
         });
 
         calendar.render();
