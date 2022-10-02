@@ -193,47 +193,7 @@ module.exports = {
 
 
 
-  /**
-    * @module paymentCash
-    * @param req body get id_transaction, changes, paid (uang yang dibayar) from input user
-    * @param res redirect to /admin/transaction 
-    * @description
-    *  1. Update status transaksi to "PAYMENT" 
-    *  2. Update status payment method to "CASH" 
-    *  3. Save data to table payment cash , 
-    *  4. Save id payment cash to table transaction detail
-    * @todo Payment cash when user choose payment method cash
-    */
-  paymentCash: async (req, res) => {
-    const { id_transaction, changes, paid } = req.body;
-    try {
-      // update status transaksi
-      const trans = await tbTrans.findOne({ _id: id_transaction })
-      trans.status = "PAYMENT";
-      trans.payment_method = "CASH"
-      await trans.save();
-      // save ke table payment
-      const newItem = {
-        paid,
-        changes,
-        transdetail_id: trans.transdetail_id,
-      }
-      const datapaymentCash = await payment_cash.create(newItem);
-      // masukin id payment cash ke transaction detail
-      const transDetail = await tbTransDetail.findOne({ _id: trans.transdetail_id })
-      transDetail.cash_id = datapaymentCash._id;
-      await transDetail.save();
-      req.flash("alertMessage", "Success Payment Transaction !");
-      req.flash("alertStatus", "success");
-      res.redirect("/admin/transaction")
-
-    } catch (error) {
-      req.flash("alertMessage", "Failed Payment Transaction ! ");
-      req.flash("alertStatus", "danger");
-      console.log("error  ", error);
-      res.redirect("/admin/transaction")
-    }
-  },
+ 
 
   /**
   * @module paymentTransfer

@@ -13,10 +13,6 @@ const transaction_detailSchema = new mongoose.Schema({
     type : ObjectId,
     ref: 'split_payment'
   },
-  cash_id:{
-    type : ObjectId,
-    ref: 'cash_payment'
-  },
   kasbon_id:{
     type : ObjectId,
     ref: 'kasbon_payment'

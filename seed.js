@@ -20,7 +20,6 @@ seeder.connect(localDB, {
     './models/transaction',
     './models/transaction_detail',
     './models/type',
-    './models/cash_payment',
     './models/split_payment',
     './models/transfer_payment',
     './models/kasbon_payment',
@@ -28,7 +27,7 @@ seeder.connect(localDB, {
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['user' , 'customer', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'cash_payment', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment', 'booking'  ], function () {
+  seeder.clearModels(['user' , 'customer', 'merk','product' , 'transaction', 'transaction_detail', 'type', 'split_payment', 'transfer_payment','kasbon_payment', 'dp_payment', 'booking'  ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -200,17 +199,6 @@ var data = [
         start_date: '2022-08-24 11:00',
         end_date: '2022-08-25 12:00',
         lokasi_pengambilan: 'DU',
-      },
-    ]
-  },
-  {
-    'model': 'cash_payment',
-    'documents': [  
-      {
-        _id: mongoose.Types.ObjectId('1e96cbe292b973001c101445'),
-        paid: 50000,
-        changes : 40000,
-        transdetail_id: mongoose.Types.ObjectId('5e961be292b97300fc101245'),
       },
     ]
   },

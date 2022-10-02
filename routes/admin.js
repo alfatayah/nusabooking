@@ -34,7 +34,6 @@ router.get("/transaction/filter_date/:startDate:endDate" , transactionController
 router.get("/transaction/detail/:id", transactionController.showDetailTransaction); 
 
 router.get("/transaction/print_transaction/:id", transactionController.showPrintTransaction);
-router.post("/transaction/payment_cash", transactionController.paymentCash);
 router.post ("/transaction/payment_transfer" , transactionController.paymentTransfer);
 router.post("/transaction/payment_kasbon" , transactionController.paymentKasbon);
 router.post("/transaction/payment_dp" , transactionController.paymentDP);
