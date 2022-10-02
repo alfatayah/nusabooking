@@ -3,8 +3,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const users = require('../models/user');
 const tbProduct = require('../models/product');
-const tbTrans = require('../models/transaction');
-const tbTransDetail = require('../models/transaction_detail')
 const tbCustomer = require('../models/customer');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
@@ -14,17 +12,6 @@ var mongoose = require('mongoose');
 var moment = require('moment');  
 var list = [];
 module.exports = {
-  
-  /**
-   * sign in module
-   * @module viewSignIn
-   * @param  {asdasd} req asdasd
-   * @param  {asdasd} res asdasd
-   * @param  {asdadasd} =>{try{constalertMessage=req.flash('alertMessage'
-   * @param  {asdasd} ;constalertStatus=req.flash('alertStatus'
-   * @param  {alertMessage} ;constalert={message
-   * @param  {alertStatus};if(req.session.user===null||req.session.user==undefined} status
-   */
   viewSignIn: async (req, res) => {
     try {
       const alertMessage = req.flash('alertMessage');
@@ -170,32 +157,6 @@ module.exports = {
     }
   },
 
-  showDetailTransaction: async (req, res) => {
-    const { id } = req.params;
-    try {
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus };
-      const trans_detail = await tbTransDetail.findOne({ _id: id })
-        .populate({ path: "transaction_Id", populate: { path: "discountId" } })
-        .populate('dp_id')
-      let transID = trans_detail.transaction_Id._id;
-      const trans = await tbTrans.findOne({ _id: transID })
-        .populate("product_id")
-
-      res.render("admin/transaction/show_detail_transaction", {
-        title: "Staycation | Detail Transaction",
-        user: req.session.user,
-        trans_detail,
-        trans,
-        alert
-      });
-    } catch (error) {
-      res.redirect(`/admin/transaction/detail`);
-    }
-  },
-
-
   viewDetailBooking: async (req, res) => {
     const { id } = req.params;
     try {
@@ -223,8 +184,6 @@ module.exports = {
     }
   },
 
-
-
   addBook: async (req, res) => {
     const {user_id, customer_id , datetimes, productbook, statusPenempatan, start_date, end_date} = req.body;
     // Change data string to array example '0,1' => ['0','1']
@@ -249,85 +208,7 @@ module.exports = {
     }
   },
 
-  addTrans: async (req, res) => {
-    var transid = mongoose.Types.ObjectId();
-    var transdetail_id = mongoose.Types.ObjectId();
-    const trans = await tbTrans.find();
-    const numberinvoice =  trans.length + 1;
-    const invoice = "INV"+ moment().format('DDMMYY') + numberinvoice ;
-    const status = "NOT_DONE";
-    const { select2, productId, jaminan  , days , subtotal, diskonID, total_discount, total,  desc_trans, date_transaction, userid,  start_date , end_date  }  = req.body;
-    const product = await tbProduct.find({ _id : productId});
-    // const member = await tbMember.findOne({_id : select2});
-    const transactionWithDiskon = {
-      _id: transid,
-      // member_Id: select2, 
-      subtotal, 
-      total,
-      total_discount, 
-      start_date, 
-      end_date, 
-      days,
-      invoice,
-      status, 
-      jaminan,
-      date_transaction,
-      userid,
-      product_id: productId,
-      discountId: diskonID,
-      payment_method: "_",
-      desc_trans,
-      transdetail_id,
-    }
-    const newTransaction = {
-      _id: transid,
-      // member_Id: select2, 
-      subtotal, 
-      total,
-      total_discount, 
-      start_date, 
-      end_date, 
-      days,
-      invoice,
-      status, 
-      jaminan,
-      date_transaction,
-      userid,
-      product_id: productId,
-      payment_method: "_",
-      desc_trans,
-      transdetail_id,
-    }
-
-    try {
-      if(!productId || product.status === "NOT AVALAIBLE" ){
-        req.flash("alertMessage", "Product Empty or Not Avalaible");
-        req.flash("alertStatus", "danger");
-        res.redirect(`/admin/dashboard`);
-      } else {
-        await tbTrans.create(diskonID ? transactionWithDiskon : newTransaction );
-        await tbTransDetail.create({ _id:transdetail_id , transaction_Id: transid , dp_id : null , split_id : null, cash_id: null , kasbon_id: null, transfer_id: null})
-        for (var i = 0; i < product.length; i++){
-          product[i].status = "NOT AVALAIBLE";
-          product[i].transaction_Id.push({_id : transid})
-          await product[i].save();
-        }
-
-        member.transaction_Id.push({_id : transid});
-        await member.save();
-        
-        list.splice(0, list.length )
-        req.flash("alertMessage", "Succes Add Transaction");
-        req.flash("alertStatus", "success");
-        res.redirect(`/admin/dashboard`);
-      }
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect(`/admin/dashboard`);
-    }
-  },
-
+  
  
 
 }

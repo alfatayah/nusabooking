@@ -3,7 +3,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const users = require('../models/user');
 const tbProduct = require('../models/product');
-const tbTrans = require('../models/transaction');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
