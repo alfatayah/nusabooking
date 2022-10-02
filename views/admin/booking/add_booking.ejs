@@ -1,0 +1,62 @@
+<!-- Modal -->
+<div class="modal fade" id="add-booking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Booking</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/admin/booking/add_booking" method="POST">
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Customer</label>
+              <select class="form-control " name="customer_id" id="customer_id" required>
+                <option selected disabled value=""> </option>
+                <% for(var i=0; i < customer.length; i++){ %>
+                  <option value=<%=customer[i]._id %> ><%= customer[i].name %>
+                  </option>
+                  <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Pick Dates</label>
+              <input class="form-control " type="text" name="datetimes" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="name">Producs</label>
+              <select name="product_id" id="product_id" onchange="selectedProduk(this)" class="form-control " required>
+                <option selected disabled value=""> </option>
+                <% for(var i=0; i < products.length; i++){ %>
+                  <option data-item= "<%= products[i].product_name%>^<%= products[i]._id %>"  value=<%=products[i]._id %> ><%= products[i].product_name %>
+                  </option>
+                  <% } %>
+              </select>
+            </div>
+            <div  name="productSection"  id="productSection"></div>
+            <div class="form-group">
+              <label for="statusPenempatan">Lokasi pengambilan</label>
+              <select class="form-control statusPenempatan" name="statusPenempatan" required>
+                <option value=""> </option>
+                <option value="Cipadung" >Cipadung</option>
+                <option value="DU" >DU</option>
+                <option value="Cipadung & DU" > Cipadung & DU </option>
+              </select>
+           </div>
+           <input  type="hidden" class="form-control" value="<%= user.id %>" name="user_id" id="user_id" />
+             <input  type="hidden" class="form-control" name="productbook" id="productbook" />
+             <input  type="hidden" class="form-control" name="start_date" id="start_date" />
+             <input  type="hidden" class="form-control" name="end_date" id="end_date" />
+            <input type="hidden" id="bookingData" value="<%= JSON.stringify(booking)  %>" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+          </form>
+      </div>
+    </div>
+  </div>

@@ -241,11 +241,11 @@ module.exports = {
       await tbBooking.create(newData);  
       req.flash("alertMessage", "Succes Add Booking");
       req.flash("alertStatus", "success");
-      res.redirect(`/admin/dashboard`);
+      res.redirect(`/admin/booking`);
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
-      res.redirect(`/admin/dashboard`);
+      res.redirect(`/admin/booking`);
     }
   },
 

@@ -19,8 +19,9 @@ router.get("/logout", adminController.actionLogout);
 
 // ketika login succes akan mengarahkan ke screen view dashboard
 router.get("/dashboard", adminController.viewDashboard);
-router.post("/dashboard/addBook", adminController.addBook);
+
 router.get("/booking", adminController.viewBooking);
+router.post("/booking/add_booking", adminController.addBook);
 router.get("/booking/detail/:id", adminController.viewDetailBooking); 
 
 
