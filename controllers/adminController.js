@@ -328,27 +328,6 @@ module.exports = {
     }
   },
 
-  // ALL report 
-  reportCustomer: async (req, res) => {
-    try {
-      // untuk alert message dia call component dari partials/message.ejs
-      // const member = await tbMember.find()
-      // .populate({ path: 'transaction_Id '})
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/report/view_customer', {
-        title: "Nusa | Laporan Pelanggan",
-        user: req.session.user, 
-        // member,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/report");
-    }
-  },
  
 
 }

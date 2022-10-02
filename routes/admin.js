@@ -33,7 +33,6 @@ router.get("/transaction/filter_date/:startDate:endDate" , transactionController
 // router.get("/transaction/filter_date" , transactionController.filterbyDate);
 router.get("/transaction/detail/:id", transactionController.showDetailTransaction); 
 
-router.get("/report/customer", adminController.reportCustomer);
 router.get("/transaction/print_transaction/:id", transactionController.showPrintTransaction);
 router.post("/transaction/payment_cash", transactionController.paymentCash);
 router.post ("/transaction/payment_transfer" , transactionController.paymentTransfer);
