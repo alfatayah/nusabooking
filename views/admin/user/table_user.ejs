@@ -29,7 +29,7 @@
               <td><%= dataUser[i].status %></td>
               <td>
                 <form action="/admin/user/<%= dataUser[i].id %>?_method=DELETE" method="POST">
-                  <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
+                  <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
                   data-id="<%= dataUser[i].id %>" data-username="<%= dataUser[i].username %>"  data-password="<%= dataUser[i].password %>"
                      data-penempatan="<%= dataUser[i].statusPenempatan %>"  data-status="<%= dataUser[i].status %>" >
                     <i class="fas fa-edit"></i></a>

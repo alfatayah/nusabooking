@@ -23,7 +23,7 @@
               <td><%= type[i].name %></td>
               <td>
                 <form action="/admin/type/<%= type[i].id %>?_method=DELETE" method="POST">
-                  <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update" data-id="<%= type[i].id %>" data-name="<%= type[i].name %>"  >
+                  <a type="button" class="btn btn-warning btn-circle btn-sm button-update" data-id="<%= type[i].id %>" data-name="<%= type[i].name %>"  >
                     <i class="fas fa-edit"></i></a>
                   <button type="submit" class="btn btn-danger btn-circle btn-sm">
                     <i class="fas fa-trash"></i></button>

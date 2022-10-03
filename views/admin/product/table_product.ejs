@@ -58,7 +58,7 @@
             <td> <%= product[i].barcode %></td>
             <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
-                <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
+                <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
                 data-id="<%= product[i].id %>" data-product_name="<%= product[i].product_name %>"   data-tipe="<%= product[i].tipe %>"
                  data-barcode="<%= product[i].barcode %>"  data-price="<%= product[i].price %>" >
                   <i class="fas fa-edit"></i></a>

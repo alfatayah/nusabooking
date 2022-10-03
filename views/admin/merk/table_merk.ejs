@@ -23,7 +23,7 @@
               <td><%= merk[i].name %></td>
               <td>
                 <form action="/admin/merk/<%= merk[i].id %>?_method=DELETE" method="POST">
-                  <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update" data-id="<%= merk[i].id %>" data-name="<%= merk[i].name %>"  >
+                  <a type="button" class="btn btn-warning btn-circle btn-sm button-update" data-id="<%= merk[i].id %>" data-name="<%= merk[i].name %>"  >
                     <i class="fas fa-edit"></i></a>
                   <button type="submit" class="btn btn-danger btn-circle btn-sm">
                     <i class="fas fa-trash"></i></button>
