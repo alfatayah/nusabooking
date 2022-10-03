@@ -22,7 +22,7 @@ router.get("/dashboard", adminController.viewDashboard);
 router.get("/booking", adminController.viewBooking);
 router.post("/booking/add_booking", adminController.addBook);
 router.get("/booking/detail/:id", adminController.viewDetailBooking); 
-
+router.put("/booking", adminController.editBooking);
 
 router.get("/user", userController.viewUser);
 router.post("/user", userController.addUser);

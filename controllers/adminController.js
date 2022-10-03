@@ -185,7 +185,7 @@ module.exports = {
   },
 
   addBook: async (req, res) => {
-    const {user_id, customer_id , datetimes, productbook, statusPenempatan, start_date, end_date} = req.body;
+    const {user_id, customer_id, productbook, statusPenempatan, start_date, end_date} = req.body;
     // Change data string to array example '0,1' => ['0','1']
     var arrProduct = productbook.split(",").map(x => x);
     const newData = {
@@ -207,6 +207,25 @@ module.exports = {
       res.redirect(`/admin/booking`);
     }
   },
+
+  editBooking : async (req, res) => {
+    const {user_id, customer_id, productbook, statusPenempatan, start_date, end_date} = req.body;
+    try {
+      const booking = await tbBooking.findOne({ _id: id })
+      booking.user_id = user_id;
+      booking.customer_id = customer_id;
+      booking.productbook = productbook;
+      booking.username_ig = username_ig;
+      await customer.save();
+      req.flash("alertMessage", "Succes Update Customer");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/customer");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+     res.redirect("/admin/customer");
+    }
+   },
 
   
  

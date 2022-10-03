@@ -65,22 +65,26 @@
   </div>
 </div>
 <%- include('add_booking.ejs') %>
+<%- include('edit_booking.ejs') %>
 <%- include('../../partials/dash.ejs') %>
 
 <script>
   $('#dataTable').on('click', '.button-update', function () {
-    // let id = $(this).data('id');
-    // let namaKaryawan = $(this).data('username');
-    // let password = $(this).data('password');
-    // let statusPenempatan = $(this).data('penempatan');
-    // console.log("statusPenempatan " , statusPenempatan);
-    // let status = $(this).data('status');
-    // $('#edit-user').modal('show');
-    // $('.id').val(id);
-    // $('.namaKaryawan').val(namaKaryawan);
-    // $('.password').val(password);
-    // $('.statusPenempatan').val(statusPenempatan);
-    // $('.status').val(status);
+    let id = $(this).data('id');
+    let customer = $(this).data('customer');
+    let karyawan = $(this).data('karyawan');
+    let startdate = $(this).data('startdate');
+    let enddate = $(this).data('enddate');
+    let lokasi = $(this).data('lokasi');
+    $('#edit-booked').modal('show');
+    $('.id').val(id);
+    $('.customer').val(customer);
+    $('.karyawan').val(karyawan);
+    $('.startdate').val(startdate);
+    $('.enddate').val(enddate);
+    $('.lokasi').val(lokasi);
+
+
  
 
 
