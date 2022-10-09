@@ -72,22 +72,14 @@
   $('#dataTable').on('click', '.button-update', function () {
     let id = $(this).data('id');
     let customer = $(this).data('customer');
-    let karyawan = $(this).data('karyawan');
-    let startdate = $(this).data('startdate');
-    let enddate = $(this).data('enddate');
+    let datetimes = $(this).data('datetimes');
     let lokasi = $(this).data('lokasi');
+    console.log("customer " , datetimes)
     $('#edit-booked').modal('show');
     $('.id').val(id);
     $('.customer').val(customer);
-    $('.karyawan').val(karyawan);
-    $('.startdate').val(startdate);
-    $('.enddate').val(enddate);
+    $('.datetimes').val(datetimes);
     $('.lokasi').val(lokasi);
-
-
- 
-
-
   })
 </script>
 

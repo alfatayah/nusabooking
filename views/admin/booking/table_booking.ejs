@@ -33,10 +33,9 @@
                 <form action="/admin/merk/?_method=DELETE" method="POST">
                   <a href="/admin/booking/detail/<%= booking[i]._id %>" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i></a>
-
                     <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                    data-id="<%= booking[i].id %>" data-customer="<%=  booking[i].customer_id.name %>"  data-karyawan="<%= booking[i].Karyawan %>"  data-startdate="<%= booking[i].start_date %>"
-                      data-enddate="<%=  booking[i].end_date %>"  data-lokasi="<%= booking[i].lokasi_pengambilan %>" >
+                    data-id="<%= booking[i].id %>" data-customer="<%=  booking[i].customer_id.name %>"  data-datetimes="<%= booking[i].start_date %> | <%=  booking[i].end_date %> "
+                      data-lokasi="<%= booking[i].lokasi_pengambilan %>" >
                       <i class="fas fa-edit"></i></a>
                       
                   <button type="submit" class="btn btn-danger btn-circle btn-sm">
