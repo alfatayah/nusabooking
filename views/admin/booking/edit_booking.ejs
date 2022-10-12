@@ -12,8 +12,8 @@
         <form action="/admin/booking" method="POST">
           <div class="modal-body">
               <div class="form-group">
-                <label for="name">Customer</label>
-                <select  class="form-control lokasi" name="customer"  required>
+                <label for="namecustomer">Customer</label>
+                <select  class="form-control namecustomer" name="namecustomer"  required>
                   <option selected  value=""> </option>
                   <% for(var i=0; i < customer.length; i++){ %>
                     <option value=<%= customer[i]._id %> ><%= customer[i].name %>
@@ -37,8 +37,8 @@
               </div>
               <div  name="productSection"  id="productSection"></div>
               <div class="form-group">
-                <label for="statusPenempatan">Lokasi pengambilan</label>
-                <select class="form-control datetimes" name="statusPenempatan" required>
+                <label for="lokasi">Lokasi pengambilan</label>
+                <select class="form-control lokasi" name="lokasi" required>
                   <option value=""> </option>
                   <option value="Cipadung" >Cipadung</option>
                   <option value="DU" >DU</option>

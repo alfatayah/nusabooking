@@ -71,13 +71,13 @@
 <script>
   $('#dataTable').on('click', '.button-update', function () {
     let id = $(this).data('id');
-    let customer = $(this).data('customer');
+    let namecustomer = $(this).data('namecustomer');
     let datetimes = $(this).data('datetimes');
     let lokasi = $(this).data('lokasi');
-    console.log("customer " , datetimes)
+    console.log("customer " , namecustomer)
     $('#edit-booked').modal('show');
     $('.id').val(id);
-    $('.customer').val(customer);
+    $('.namecustomer').val(namecustomer);
     $('.datetimes').val(datetimes);
     $('.lokasi').val(lokasi);
   })
