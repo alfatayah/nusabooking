@@ -227,6 +227,22 @@ module.exports = {
     }
    },
 
+
+   deleteBooking: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const booking = await tbBooking.findOne({ _id: id });
+      await booking.remove();
+      req.flash('alertMessage', 'Success Delete Booking');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/booking');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/booking');
+    }
+  },
+
   
  
 

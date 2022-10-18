@@ -30,7 +30,7 @@
               <td><%= booking[i].end_date %></td>
               <td><%= booking[i].lokasi_pengambilan %></td>
               <td>
-                <form action="/admin/merk/?_method=DELETE" method="POST">
+                <form action="/admin/booking/<%= booking[i].id %>?_method=DELETE" method="POST">
                   <a href="/admin/booking/detail/<%= booking[i]._id %>" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i></a>
                     <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
