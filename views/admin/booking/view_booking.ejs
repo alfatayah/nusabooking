@@ -73,8 +73,17 @@
     let id = $(this).data('id');
     let namecustomer = $(this).data('namecustomer');
     let datetimes = $(this).data('datetimes');
+    let product = $(this).data('product');
     let lokasi = $(this).data('lokasi');
-    console.log("customer " , namecustomer)
+    console.log("product " ,  product)
+  
+    for (const [key, value] of Object.entries(product.toString())) {
+   if (key === "product_name"){
+    console.log( "value " , value); 
+   }
+  }
+  
+
     $('#edit-booked').modal('show');
     $('.id').val(id);
     $('.namecustomer').val(namecustomer);
@@ -84,51 +93,3 @@
 </script>
 
 
-<script>
-    let dataArr = [];
-    let dataid = [];
-    let key = 1;
-    
-  function selectedProduk(e) {
-    let selected = e.options[e.selectedIndex].getAttribute("data-item");
-    const check =  dataArr.includes(selected.split('^')[0])
-
-    if(check == false){
-      // NOTE: di dalam string nya gue kasih delimeter ^ [0] = nama produk [1] = id produk
-      dataArr.push(selected.split('^')[0]);
-      dataid.push(selected.split('^')[1])
- 
-      let numbering = key++;
-      let testproduct = document.getElementById('productbook').value = dataid;
-      console.log("testproduct", testproduct)
-      var $section =  $('  <div id="section'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
-      $('#productSection').append($section);
-      document.getElementById("item" + numbering).value = selected.split('^')[0];
-      document.getElementById("itemid" + numbering).value = selected.split('^')[1];
-    
-    }
-  }
-
-  function removeItem (number){
-    // remove element yang udah di create dari append
-    let element = document.getElementById("section" + number);
- 
-    let removeData = document.getElementById("item" + number).value;
-    let removeId = document.getElementById("itemid" + number).value;
-    document.getElementById("product_id").selectedIndex = 0;
-
-    //remove product name dari array dataArr
-    const index = dataArr.indexOf(removeData);
-    if (index > -1) { 
-      dataArr.splice(index, 1); 
-    }
-
-    //remove id dari array dataid
-    const indexId = dataid.indexOf(removeId);
-    if (index > -1) { 
-      dataid.splice(indexId, 1); 
-    }
-    element.remove();
- 
-  }
-</script>

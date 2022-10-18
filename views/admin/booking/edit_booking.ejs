@@ -27,7 +27,7 @@
               </div>
               <div class="form-group">
                 <label for="name">Producs</label>
-                <select name="product_id" id="product_id" onchange="selectedProduk(this)" class="form-control " required>
+                <select name="product_id" id="product_id" onchange="selectedEdit(this)" class="form-control " required>
                   <option selected disabled value=""> </option>
                   <% for(var i=0; i < products.length; i++){ %>
                     <option data-item= "<%= products[i].product_name%>^<%= products[i]._id %>"  value=<%=products[i]._id %> ><%= products[i].product_name %>
@@ -35,7 +35,8 @@
                     <% } %>
                 </select>
               </div>
-              <div  name="productSection"  id="productSection"></div>
+              <div  name="allbook"  id="allbook"></div>
+              <div  name="productedit"  id="productedit"></div>
               <div class="form-group">
                 <label for="lokasi">Lokasi pengambilan</label>
                 <select class="form-control lokasi" name="lokasi" required>
@@ -59,3 +60,54 @@
     </div>
   </div>
 </div>
+
+<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script>
+  let dataArray = [];
+  let data_id = [];
+  let keyValue = 1;
+  let numbering = keyValue++;
+  let allbook = document.getElementById('allbook');
+  // console.log("allbook " , allbook)
+  // this.selectedEdit()
+
+function selectedEdit(e) {
+  const check =  dataArray.includes(selected.split('^')[0])
+
+  if(check == false){
+    // NOTE: di dalam string nya gue kasih delimeter ^ [0] = nama produk [1] = id produk
+    dataArray.push(selected.split('^')[0]);
+    data_id.push(selected.split('^')[1])
+
+
+    let testproduct = document.getElementById('productbook').value = data_id;
+    var $section =  $('<div id="section'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
+    $('#productedit').append($section);
+    document.getElementById("item" + numbering).value = selected.split('^')[0];
+    document.getElementById("itemid" + numbering).value = selected.split('^')[1];
+  }
+}
+
+function removeItem (number){
+  // remove element yang udah di create dari append
+  let element = document.getElementById("section" + number);
+
+  let removeData = document.getElementById("item" + number).value;
+  let removeId = document.getElementById("itemid" + number).value;
+  document.getElementById("product_id").selectedIndex = 0;
+
+  //remove product name dari array dataArray
+  const index = dataArray.indexOf(removeData);
+  if (index > -1) { 
+    dataArray.splice(index, 1); 
+  }
+
+  //remove id dari array data_id
+  const indexId = data_id.indexOf(removeId);
+  if (index > -1) { 
+    data_id.splice(indexId, 1); 
+  }
+  element.remove();
+
+}
+</script>
