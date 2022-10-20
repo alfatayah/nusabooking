@@ -75,13 +75,11 @@
     let datetimes = $(this).data('datetimes');
     let product = $(this).data('product');
     let lokasi = $(this).data('lokasi');
-    console.log("product " ,  product)
-  
-    for (const [key, value] of Object.entries(product.toString())) {
-   if (key === "product_name"){
-    console.log( "value " , value); 
-   }
-  }
+    // for (const [key, value] of product) {
+    //   if (key == "tipe") {
+    //     console.log("value ", value);
+    //   }
+    // }
   
 
     $('#edit-booked').modal('show');

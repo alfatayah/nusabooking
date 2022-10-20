@@ -142,7 +142,7 @@ var data = [
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
         product_id: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('4e96cbe292b37300fc90bb01') },
         ],
         customer_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
         user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
@@ -155,7 +155,6 @@ var data = [
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc102445'),
         product_id: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b37300fc90bb01') },
         ],
         customer_id: mongoose.Types.ObjectId('5e96cbe292b91300fc903315'),
         user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
