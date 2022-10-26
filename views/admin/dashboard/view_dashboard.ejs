@@ -71,7 +71,7 @@
         z-index: 9999;
         background: #FFC107;
         color: black;
-        width: 450px;
+        width: auto;
         border-radius: 3px;
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
         padding: 10px;
@@ -86,7 +86,7 @@
       .style5 .tooltip {
         background: #1E252B;
         color: #FFFFFF;
-        max-width: 200px;
+        max-width: 300px;
         width: auto;
         font-size: .8rem;
         padding: .5em 1em;
@@ -144,7 +144,7 @@
         margin-bottom: 0;
       }
 
-      .tooltip[x-placement^="right"],
+       .tooltip[x-placement^="right"],
       .popper[x-placement^="right"] {
         margin-left: 5px;
       }
@@ -159,7 +159,7 @@
         top: calc(50% - 5px);
         margin-left: 0;
         margin-right: 0;
-      }
+      } 
 
       .popper[x-placement^="left"],
       .tooltip[x-placement^="left"] {
@@ -176,7 +176,7 @@
         top: calc(50% - 5px);
         margin-left: 0;
         margin-right: 0;
-      }
+      } 
     </style>
     <script>
       let newData = document.getElementById('bookingData').value;
@@ -190,9 +190,11 @@
         });
       });
       let uniqueChars = [...new Set(dataName)];
+   
       dataParse.forEach(result => {
+        let nameProduct = Object.keys(result.product_id).map(r => result.product_id[r].product_name) ;
         var objEvent = {
-          description: "Admin : " + result.user_id.username + "Produk : " + result.user_id.username + "Tempat pengambilan : " + result.lokasi_pengambilan,
+          description: "Admin : " + result.user_id.username + "<br>Produk : "+ nameProduct + "<br>Tempat pengambilan : " + result.lokasi_pengambilan,
           start: result.start_date,
           end: result.end_date,
           title: "B" + result._id.slice(20, 25) + " | " + result.customer_id.name,
@@ -244,11 +246,13 @@
           eventDidMount: function (info) {
             var tooltip = new Tooltip(info.el, {
               title: info.event.extendedProps.description,
-              placement: 'top',
-              trigger: 'hover',
-              container: 'body'
+              html: true,
             });
           },
+
+
+
+
 
           // eventResize: function (info) {
           //   alert(info.event.title + " end is now " + info.event.end.toISOString());
