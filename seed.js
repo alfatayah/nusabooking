@@ -147,8 +147,8 @@ var data = [
         customer_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
         user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
 
-        start_date: '2022-10-22 11:00',
-        end_date: '2022-10-23 12:00',
+        start_date: '2022-10-20 11:00',
+        end_date: '2022-10-22 12:00',
         lokasi_pengambilan: 'Cipadung',
       },
       {
@@ -158,8 +158,8 @@ var data = [
         ],
         customer_id: mongoose.Types.ObjectId('5e96cbe292b91300fc903315'),
         user_id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
-        start_date: '2022-08-24 11:00',
-        end_date: '2022-08-25 12:00',
+        start_date: '2022-10-24 11:00',
+        end_date: '2022-10-25 12:00',
         lokasi_pengambilan: 'DU',
       },
     ]

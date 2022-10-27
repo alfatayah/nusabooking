@@ -73,21 +73,85 @@
     let id = $(this).data('id');
     let namecustomer = $(this).data('namecustomer');
     let datetimes = $(this).data('datetimes');
-    let product = $(this).data('product');
+    var product = $(this).data('product');
     let lokasi = $(this).data('lokasi');
-    // for (const [key, value] of product) {
-    //   if (key == "tipe") {
-    //     console.log("value ", value);
-    //   }
-    // }
   
-
     $('#edit-booked').modal('show');
     $('.id').val(id);
     $('.namecustomer').val(namecustomer);
     $('.datetimes').val(datetimes);
+    //NOTE: kalo array harus json stringfy dlu baru bisa di lempar
+    $('.product').val(JSON.stringify(product));
     $('.lokasi').val(lokasi);
   })
 </script>
 
 
+
+
+<script>
+  let dataArrayEdit = [];
+  let data_id = [];
+  let keyValue = 0;
+
+function onShowModal() {
+    //NOTE: ketika udah dapet lemparan baru di parse 
+    var dataProduct =  JSON.parse(document.getElementById("product").value) 
+  
+    dataProduct.forEach(res => {
+      let merge = res.product_name + "^" + res._id;
+      this.selectedEdit(null, merge)
+    });
+  }
+
+function selectedEdit(e, data) {
+  let selected = e ? e.options[e.selectedIndex].getAttribute("data-item") : data;
+  const check =  dataArrayEdit.includes(selected.split('^')[0])
+
+  if(check == false){
+    // NOTE: di dalam string nya gue kasih delimeter ^ [0] = nama produk [1] = id produk
+    dataArrayEdit.push(selected.split('^')[0]);
+    data_id.push(selected.split('^')[1])
+    let numbering = keyValue++;
+    console.log("numbering" , numbering)
+  
+
+    var $section_edit =  $('<div id="section_edit'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItemEdit('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
+    $('#productedit').append($section_edit);
+    document.getElementById("item" + numbering).value = selected.split('^')[0];
+    document.getElementById("itemid" + numbering).value = selected.split('^')[1];
+  }
+}
+
+function removeItemEdit (number){
+  // remove element yang udah di create dari append
+  let element = document.getElementById("section_edit" + number);
+  let removeData = document.getElementById("item" + number).value;
+  let removeId = document.getElementById("itemid" + number).value;
+  document.getElementById("productid_edit").selectedIndex = 0;
+
+  //remove product name dari array dataArrayEdit
+  const index = dataArrayEdit.indexOf(removeData);
+  if (index > -1) { 
+    dataArrayEdit.splice(index, 1); 
+  }
+
+  //remove id dari array data_id
+  const indexId = data_id.indexOf(removeId);
+  if (index > -1) { 
+    data_id.splice(indexId, 1); 
+  }
+  element.remove();
+
+}
+</script>
+
+<script>
+  $('#edit-booked').on('hidden.bs.modal', function (e) {
+    console.log("keyValue " , keyValue)
+    // keyDelete.forEach(res => {
+    //   console.log(" res" , res)
+    //   // removeItemEdit(res)
+    // })
+})
+</script>
