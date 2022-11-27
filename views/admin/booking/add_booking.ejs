@@ -29,7 +29,7 @@
               <select name="product_id" id="product_id" onchange="selectedProduk(this)" class="form-control " required>
                 <option selected disabled value=""> </option>
                 <% for(var i=0; i < products.length; i++){ %>
-                  <option data-item= "<%= products[i].product_name%>^<%= products[i]._id %>"  value=<%=products[i]._id %> ><%= products[i].product_name %>
+                  <option data-item= "<%= products[i].product_name%>^<%= products[i]._id %>^<%= products[i].ownership %>"  value=<%=products[i]._id %> > <%= products[i].product_name %> | <%= products[i].ownership %> 
                   </option>
                   <% } %>
               </select>
@@ -78,11 +78,11 @@
  
       let numbering = key++;
       let testproduct = document.getElementById('productbook').value = dataid;
-      var $section =  $('  <div id="section'+numbering+'" class="input-group mb-3"> <input id="item'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
+      var $section =  $('<div id="section'+numbering+'" class="input-group mb-3"> <input id="itemDisplay'+ numbering +'" type="text" disabled="disable" class="form-control" >  <input id="item'+ numbering +'" type="hidden" class="form-control" >  <input id="itemid'+ numbering +'" type="hidden"  class="form-control" >  <div class="input-group-append"> <button type="button" onclick="removeItem('+ numbering +')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div> </div>');
       $('#productSection').append($section);
       document.getElementById("item" + numbering).value = selected.split('^')[0];
       document.getElementById("itemid" + numbering).value = selected.split('^')[1];
-    
+      document.getElementById("itemDisplay" + numbering).value = selected.split('^')[0] + " | " + selected.split('^')[2];
     }
   }
 
@@ -92,7 +92,6 @@
  
     let removeData = document.getElementById("item" + number).value;
     let removeId = document.getElementById("itemid" + number).value;
-    document.getElementById("product_id").selectedIndex = 0;
 
     //remove product name dari array dataArr
     const index = dataArr.indexOf(removeData);
@@ -106,6 +105,7 @@
       dataid.splice(indexId, 1); 
     }
     element.remove();
+    document.getElementById("product_id").value = dataid[0];
  
   }
 </script>

@@ -41,7 +41,7 @@
               <td><%= booking[i].user_id.username %></td>
               <td><%=  moment(booking[i].start_date).format('DD-MM-YY') %></td>
               <td><%= moment(booking[i].end_date).format('DD-MM-YY')  %></td>
-              <td><%= dayjs(booking[i].booking_date).format('DD-MM-YY')%> </td>
+              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('DD-MM-YY')%> </td>
               <td><%= booking[i].lokasi_pengambilan %></td>
               <td>
                 <form action="/admin/booking/<%= booking[i].id %>?_method=DELETE" method="POST">
