@@ -34,9 +34,9 @@ module.exports = {
 
   addProduct: async (req, res) => {
     try {
-      const { product_name, tipe, barcode, price, status_produk } = req.body;
+      const { product_name, tipe, barcode, ownership, price, status_produk } = req.body;
       const newItem = {
-        product_name, tipe, barcode, price, status_produk
+        product_name, tipe, barcode, ownership, price, status_produk
       }
        await tbProduct.create(newItem);  
         req.flash("alertMessage", "Succes Add Product");
@@ -52,12 +52,13 @@ module.exports = {
   },
 
   editProduct: async (req, res) => {
-    const {id, product_name, tipe, barcode, price } = req.body;
+    const {id, product_name, tipe, barcode, ownership, price } = req.body;
     try {
       const product = await tbProduct.findOne({ _id : id})
       product.product_name = product_name;
       product.tipe = tipe;
       product.barcode = barcode;
+      product.ownership = ownership;
       product.price = price;
      await product.save();
      req.flash("alertMessage", "Succes Update Produk");

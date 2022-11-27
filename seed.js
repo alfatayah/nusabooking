@@ -125,6 +125,7 @@ var data = [
         tipe: "Camera",
         price: 12000,
         barcode: 'BR12345',
+        ownership: 'DU',
       },
       {
         _id: mongoose.Types.ObjectId('4e96cbe292b37300fc90bb01'),
@@ -132,6 +133,7 @@ var data = [
         tipe: "Lighting",
         price: 12000,
         barcode: 'BR121345',
+        ownership: 'Cipadung',
       },
     ]
   },

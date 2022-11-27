@@ -20,7 +20,11 @@ const productSchema = new mongoose.Schema({
   },
   dateBooked:[{
     type: String,
-  }]
+  }],
+  ownership: {
+    type: String,
+    required: true
+  }
   
 })
 

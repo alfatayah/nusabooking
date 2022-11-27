@@ -45,6 +45,7 @@
             <th>Type</th>
             <th>Price</th>
             <th>Barcode</th>
+            <th>Kepemilikan</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -56,11 +57,12 @@
             <td><%= product[i].tipe %></td>
             <td> <%= utils.fortmatCurrency(product[i].price)  %></td>
             <td> <%= product[i].barcode %></td>
+            <td> <%= product[i].ownership %></td>
             <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
                 <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
                 data-id="<%= product[i].id %>" data-product_name="<%= product[i].product_name %>"   data-tipe="<%= product[i].tipe %>"
-                 data-barcode="<%= product[i].barcode %>"  data-price="<%= product[i].price %>" >
+                 data-barcode="<%= product[i].barcode %>" data-ownership="<%= product[i].ownership %>"  data-price="<%= product[i].price %>" >
                   <i class="fas fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i></button>

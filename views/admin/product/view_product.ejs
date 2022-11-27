@@ -73,6 +73,7 @@
     let product_name = $(this).data('product_name');
     let tipe = $(this).data('tipe');
     let barcode = $(this).data('barcode');
+    let ownership = $(this).data('ownership');
     let price = $(this).data('price');
 
     $('#edit-product').modal('show');
@@ -80,6 +81,7 @@
     $('.product_name').val(product_name);
     $('.tipe').val(tipe);
     $('.barcode').val(barcode);
+    $('.ownership').val(ownership);
     $('.price').val(price);
   })
 </script>
