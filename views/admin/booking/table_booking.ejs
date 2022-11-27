@@ -28,8 +28,9 @@
               <th>Karyawan</th>
               <th>Start Date</th>
               <th>End Date</th>
-              <th>Booking Date</th>
+              <th>Book Date</th>
               <th>Lokasi</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -43,6 +44,7 @@
               <td><%= moment(booking[i].end_date).format('DD-MM-YY')  %></td>
               <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('DD-MM-YY')%> </td>
               <td><%= booking[i].lokasi_pengambilan %></td>
+              <td><%= booking[i].status %></td>
               <td>
                 <form action="/admin/booking/<%= booking[i].id %>?_method=DELETE" method="POST">
                   <a href="/admin/booking/detail/<%= booking[i]._id %>" class="btn btn-success btn-circle btn-sm">
@@ -51,7 +53,10 @@
                     data-id="<%= booking[i].id %>" data-namecustomer="<%=  booking[i].customer_id._id %>"  data-datetimes="<%= booking[i].start_date %> | <%=  booking[i].end_date %> "
                       data-lokasi="<%= booking[i].lokasi_pengambilan %>"  data-product="<%= JSON.stringify(booking[i].product_id)  %>" >
                       <i class="fas fa-edit"></i></a>
-                      
+                     <% if(booking[i].status !== "done" ){ %>
+                      <a href="/admin/booking/check/<%= booking[i]._id %>" class="btn btn-success btn-circle btn-sm">
+                        <i class="fas fa-check"></i></a>  
+                     <% }%>
                   <button type="submit" class="btn btn-danger btn-circle btn-sm">
                     <i class="fas fa-trash"></i></button>
                 </form>

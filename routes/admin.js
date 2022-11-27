@@ -24,6 +24,7 @@ router.post("/booking/add_booking", adminController.addBook);
 router.get("/booking/detail/:id", adminController.viewDetailBooking); 
 router.put("/booking", adminController.editBooking);
 router.delete('/booking/:id', adminController.deleteBooking);
+router.get('/booking/check/:id', adminController.checkBook);
 
 router.get("/user", userController.viewUser);
 router.post("/user", userController.addUser);

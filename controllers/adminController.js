@@ -249,6 +249,21 @@ module.exports = {
       res.redirect('/admin/booking');
     }
   },
+  checkBook: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const booking = await tbBooking.findOne({ _id: id })
+      booking.status = booking.status === 'taken' ? "done" : "taken";
+      await booking.save();
+      req.flash("alertMessage", "Succes Update Booking");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/booking");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+     res.redirect("/admin/booking");
+    }
+  },
 
   
  

@@ -24,12 +24,16 @@ const bookingSchema = new mongoose.Schema({
     },
     booking_date:{
      type: String,
-        required: true
+     required: true
     },
     lokasi_pengambilan: {
         type: String,
         required: true
     },
+    status:{
+        type: String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model("booking", bookingSchema);

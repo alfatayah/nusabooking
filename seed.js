@@ -153,6 +153,7 @@ var data = [
         end_date: '2022-11-22 12:00',
         booking_date: '2022-10-20 11:00',
         lokasi_pengambilan: 'Cipadung',
+        status: 'Booked',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc102445'),
@@ -165,6 +166,7 @@ var data = [
         end_date: '2022-11-25 12:00',
           booking_date: '2022-10-24 11:00',
         lokasi_pengambilan: 'DU',
+        status: 'Booked',
       },
     ]
   }
