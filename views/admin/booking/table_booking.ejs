@@ -2,10 +2,22 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <!-- Button trigger modal -->
-      <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#add-booking">
-        <i class="fas fa-plus"></i>
-      </button>
+      <div class="row">
+
+     
+        <button  style="margin-left: 10px"  type="button"  class="btn btn-primary" data-toggle="modal" data-target="#add-booking">
+          <i class="fas fa-plus"></i>
+        </button>
+
+        <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width:22%; margin-left: 20px;">
+          <i class="fa fa-calendar"></i>&nbsp;
+          <span></span> <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+  
     </div>
+
+    
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -16,6 +28,7 @@
               <th>Karyawan</th>
               <th>Start Date</th>
               <th>End Date</th>
+              <th>Booking Date</th>
               <th>Lokasi</th>
               <th>Action</th>
             </tr>
@@ -26,8 +39,9 @@
               <td>B<%- JSON.stringify(booking[i]._id).slice(20, 25)  %></td>
               <td><%- booking[i].customer_id.name %></td>
               <td><%= booking[i].user_id.username %></td>
-              <td><%= booking[i].start_date %></td>
-              <td><%= booking[i].end_date %></td>
+              <td><%=  moment(booking[i].start_date).format('DD-MM-YY') %></td>
+              <td><%= moment(booking[i].end_date).format('DD-MM-YY')  %></td>
+              <td><%= dayjs(booking[i].booking_date).format('DD-MM-YY')%> </td>
               <td><%= booking[i].lokasi_pengambilan %></td>
               <td>
                 <form action="/admin/booking/<%= booking[i].id %>?_method=DELETE" method="POST">

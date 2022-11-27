@@ -41,13 +41,14 @@
                 <option value=""> </option>
                 <option value="Cipadung" >Cipadung</option>
                 <option value="DU" >DU</option>
-                <option value="Cipadung & DU" > Cipadung & DU </option>
               </select>
            </div>
            <input  type="hidden" class="form-control" value="<%= user.id %>" name="user_id" id="user_id" />
              <input  type="hidden" class="form-control" name="productbook" id="productbook" />
              <input  type="hidden" class="form-control" name="start_date" id="start_date" />
              <input  type="hidden" class="form-control" name="end_date" id="end_date" />
+             <input type="hidden" class="form-control" id="booking_date"
+             name="booking_date" value="<%= moment().format('DD-MM-YY hh:mm')%>">
             <input type="hidden" id="bookingData" value="<%= JSON.stringify(booking)  %>" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">

@@ -185,7 +185,7 @@ module.exports = {
   },
 
   addBook: async (req, res) => {
-    const {user_id, customer_id, productbook, statusPenempatan, start_date, end_date} = req.body;
+    const {user_id, customer_id, productbook, statusPenempatan, start_date, end_date, booking_date} = req.body;
     // Change data string to array example '0,1' => ['0','1']
     var arrProduct = productbook.split(",").map(x => x);
     const newData = {
@@ -194,10 +194,17 @@ module.exports = {
       user_id,
       start_date, 
       end_date,
+      booking_date,
       lokasi_pengambilan: statusPenempatan,
     }
     try {       
       await tbBooking.create(newData);  
+      arrProduct.forEach(async res => {
+      const product = await tbProduct.findOne({ _id: res })
+      product.dateBooked.push(start_date);
+      await product.save();
+      });
+     
       req.flash("alertMessage", "Succes Add Booking");
       req.flash("alertStatus", "success");
       res.redirect(`/admin/booking`);
@@ -216,8 +223,8 @@ module.exports = {
       booking.customer_id = customer_id;
       booking.productbook = productbook;
       booking.username_ig = username_ig;
-      await customer.save();
-      req.flash("alertMessage", "Succes Update Customer");
+      await booking.save();
+      req.flash("alertMessage", "Succes Update Booking");
       req.flash("alertStatus", "success");
       res.redirect("/admin/customer");
     } catch (error) {

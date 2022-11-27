@@ -16,7 +16,6 @@ let localDB =  process.env.LOCAL_DB;
 let deployDB =  process.env.DEPLOY_DB;
 
 
-
 //import mongoose
 const mongoose = require("mongoose");
 mongoose.connect(localDB, {
@@ -75,6 +74,16 @@ app.use(
   "/fullcalendar",
   express.static(path.join(__dirname, "node_modules/fullcalendar"))
 );
+app.use(
+  "/dayjs",
+  express.static(path.join(__dirname, "node_modules/dayjs"))
+);
+
+app.use(
+  "/isBetween",
+  express.static(path.join(__dirname, "node_modules/dayjs/plugin/isBetween"))
+  
+);
 
 
 
@@ -96,4 +105,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 app.locals.moment = require('moment');
+app.locals.dayjs = require('dayjs');
+app.locals.isBetween = require('dayjs/plugin/isBetween');
 module.exports = app;

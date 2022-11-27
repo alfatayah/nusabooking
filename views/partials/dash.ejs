@@ -55,13 +55,13 @@
       startDate: new Date(),
       locale: {
       cancelLabel: 'Clear',
-      format: 'DD-MMM-YY: hh:mm'
+      format: 'hh:mm DD-MMM-YY'
     }
     }).on('apply.daterangepicker', function (ev, picker) {
-      if(picker.startDate.format('DD-MMM-YY') == picker.endDate.format('DD-MMM-YY')){
+      if(picker.startDate.format('hh:mm DD-MMM-YY') == picker.endDate.format('hh:mm DD-MMM-YY')){
         $(this).val('');
       }else{
-        $(this).val(picker.startDate.format('DD-MM-YY hh:mm') + ' | ' + picker.endDate.format('DD-MM-YY hh:mm'));
+        $(this).val(picker.startDate.format('hh:mm DD-MM-YY') + ' | ' + picker.endDate.format('hh:mm DD-MM-YY'));
         var start = moment(picker.startDate.format('DD-MMM-YY'));
         var end = moment(picker.endDate.format('DD-MMM-YY'));
         var diff = end.diff(start, 'days');
