@@ -71,6 +71,10 @@ app.use(
   express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2"))
 );
 app.use(
+  "/bootstrap-select",
+  express.static(path.join(__dirname, "node_modules/bootstrap-select"))
+);
+app.use(
   "/fullcalendar",
   express.static(path.join(__dirname, "node_modules/fullcalendar"))
 );

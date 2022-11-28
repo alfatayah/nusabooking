@@ -12,13 +12,13 @@
         <div class="modal-body">
             <div class="form-group">
               <label for="name">Customer</label>
-              <select class="form-control " name="customer_id" id="customer_id" required>
+              <select class="form-control selectpicker" data-live-search="true" name="customer_id" id="customer_id" required>
                 <option selected disabled value=""> </option>
                 <% for(var i=0; i < customer.length; i++){ %>
                   <option value=<%=customer[i]._id %> ><%= customer[i].name %>
                   </option>
                   <% } %>
-              </select>
+              </select>       
             </div>
             <div class="form-group">
               <label for="name">Pick Dates</label>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
               <label for="name">Producs</label>
-              <select name="product_id" id="product_id" onchange="selectedProduk(this)" class="form-control " required>
+              <select name="product_id" id="product_id" onchange="selectedProduk(this)" class="form-control selectpicker" data-live-search="true" required>
                 <option selected disabled value=""> </option>
                 <% for(var i=0; i < products.length; i++){ %>
                   <option data-item= "<%= products[i].product_name%>^<%= products[i]._id %>^<%= products[i].ownership %>"  value=<%=products[i]._id %> > <%= products[i].product_name %> | <%= products[i].ownership %> 
