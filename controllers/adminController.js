@@ -196,6 +196,7 @@ module.exports = {
       end_date,
       booking_date,
       lokasi_pengambilan: statusPenempatan,
+      status: 'Booked'
     }
     try {       
       await tbBooking.create(newData);  

@@ -71,6 +71,10 @@ app.use(
   express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2"))
 );
 app.use(
+  "/daterangepicker",
+  express.static(path.join(__dirname, "node_modules/daterangepicker"))
+);
+app.use(
   "/bootstrap-select",
   express.static(path.join(__dirname, "node_modules/bootstrap-select"))
 );
@@ -82,12 +86,12 @@ app.use(
   "/dayjs",
   express.static(path.join(__dirname, "node_modules/dayjs"))
 );
-
 app.use(
   "/isBetween",
   express.static(path.join(__dirname, "node_modules/dayjs/plugin/isBetween"))
-  
 );
+
+
 
 
 
