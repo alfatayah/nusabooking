@@ -1,15 +1,4 @@
-
-
-<script src="/dayjs/dayjs.min.js"></script>
-<script src="/dayjs/plugin/isBetween.js"></script>
-<script>
-    dayjs.extend(window.dayjs_plugin_isBetween)
-    let dataFilter = dayjs('2022-11-02').isBetween('2022-11-01', '2022-11-31')
-
-</script>
-
 <script type="text/javascript">
-
     $(function () {
         var start = moment().subtract(29, 'days');
         var end = moment();
@@ -27,73 +16,28 @@
                 cancelLabel: 'Clear',
                 format: 'DD-MM-YY'
             }
-
         }, cb);
         cb(start, end);
-
         $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-            searchData(ev, picker)
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = moment(picker.startDate).format('DD-MM-YY');
+                    var max = moment(picker.endDate).format('DD-MM-YY');
+
+                    var date = data[3];
+                    if (
+                        (min === null && max === null) ||
+                        (min === null && date <= max) ||
+                        (min <= date && max === null) ||
+                        (min <= date && date <= max)
+                    ) {
+                        return true;
+                    }
+                    return false;
+                }
+            );
+            var table = $('#dataTable').DataTable();
+            table.draw();
         });
     });
-
-    function searchData(ev, picker) {
-        const arrayData = []
-        var table = $('#dataTable').DataTable();
-        var dataArr = table.rows().data().toArray();
-        delete dataArr.context;
-        delete dataArr.selector;
-        delete dataArr.ajax;
-  
-        console.log("data " , dataArr[0] )
-
- 
-
-
-        // $.fn.dataTable.ext.search.push(
-        //     function (settings, data, dataIndex, rows) {
-        //         var min = moment(picker.startDate).format('DD-MM-YY'); 
-        //         var max = moment(picker.endDate).format('DD-MM-YY'); 
-        //         var date_var = data[3];
-        //         console.log("date_var", date_var)
-        //         if ((isNaN(min) && isNaN(max)) || (isNaN(min) && date_var <= max) ||
-        //             (min <= date_var && isNaN(max)) || (min <= date_var && date_var <= max)) {
-        //         //    console.log("data push", data)
-        //             arrayData.push(data)
-        //             // console.log("arrayData", arrayData)
-        //             return true;
-        //         }
-        //         return false;
-        //     }
-        // );
-
-
-        // var table = $('#dataTable').DataTable();
-        // table.draw();
-        // $.fn.dataTable.ext.search.pop();
-        // displayData(arrayData)
-    }
-
-    function displayData(data) {
-        let total = 0;
-        data.forEach(element => {
-            total += parseInt(element[9]);
-        });
-        // document.getElementById('totalTransaksi').innerHTML = data.length;
-        // document.getElementById('totalPenjualan').innerHTML = total;
-
-
-    }
-
-    $('#dataTable thead tr th').on("click", function (event) {
-        if ($(event.target).is("button")) {
-            table.column(2).orderable(false).draw();//dummy to disable sorting
-        }
-
-    });
-
-
-
-
-
-
 </script>

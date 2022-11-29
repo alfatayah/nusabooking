@@ -26,9 +26,9 @@
               <th>No</th>
               <th>Customer</th>
               <th>Karyawan</th>
+              <th>Book Date</th>
               <th>Start Date</th>
               <th>End Date</th>
-              <th>Book Date</th>
               <th>Lokasi</th>
               <th>Status</th>
               <th>Action</th>
@@ -40,9 +40,9 @@
               <td>B<%- JSON.stringify(booking[i]._id).slice(20, 25)  %></td>
               <td><%- booking[i].customer_id.name %></td>
               <td><%= booking[i].user_id.username %></td>
+              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('DD-MM-YY')%> </td>
               <td><%=  moment(booking[i].start_date).format('DD-MM-YY') %></td>
               <td><%= moment(booking[i].end_date).format('DD-MM-YY')  %></td>
-              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('DD-MM-YY')%> </td>
               <td><%= booking[i].lokasi_pengambilan %></td>
               <td><%= booking[i].status %></td>
               <td>
