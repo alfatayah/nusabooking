@@ -40,7 +40,7 @@
               <td>B<%- JSON.stringify(booking[i]._id).slice(20, 25)  %></td>
               <td><%- booking[i].customer_id.name %></td>
               <td><%= booking[i].user_id.username %></td>
-              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('DD-MM-YY')%> </td>
+              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('hh:mm DD-MM-YY')%> </td>
               <td><%=  moment(booking[i].start_date).format('DD-MM-YY') %></td>
               <td><%= moment(booking[i].end_date).format('DD-MM-YY')  %></td>
               <td><%= booking[i].lokasi_pengambilan %></td>
@@ -50,7 +50,7 @@
                   <a href="/admin/booking/detail/<%= booking[i]._id %>" class="btn btn-success btn-circle btn-sm">
                     <i class="fas fa-eye"></i></a>
                     <a type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                    data-id="<%= booking[i].id %>" data-namecustomer="<%=  booking[i].customer_id._id %>"  data-datetimes="<%= booking[i].start_date %> | <%=  booking[i].end_date %> "
+                    data-id="<%= booking[i].id %>" data-namecustomer="<%= booking[i].customer_id._id %>"  data-datetimes="<%= booking[i].start_date %> | <%=  booking[i].end_date %> "
                       data-lokasi="<%= booking[i].lokasi_pengambilan %>"  data-product="<%= JSON.stringify(booking[i].product_id)  %>" >
                       <i class="fas fa-edit"></i></a>
                      <% if(booking[i].status !== "done" ){ %>

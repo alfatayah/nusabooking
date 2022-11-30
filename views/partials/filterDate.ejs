@@ -3,7 +3,7 @@
         var start = moment().subtract(29, 'days');
         var end = moment();
         function cb(start, end) {
-            $('#reportrange span').html(start.format('DD-MM-YY') + ' - ' + end.format('DD-MM-YY'));
+            $('#reportrange span').html(start.format('hh:mm DD-MM-YY') + ' - ' + end.format('hh:mm DD-MM-YY'));
         }
         $('#reportrange').daterangepicker({
             startDate: start,
@@ -14,15 +14,15 @@
             startDate: new Date(),
             locale: {
                 cancelLabel: 'Clear',
-                format: 'DD-MM-YY'
+                format: 'hh:mm DD-MM-YY'
             }
         }, cb);
         cb(start, end);
         $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
             $.fn.dataTable.ext.search.push(
                 function (settings, data, dataIndex) {
-                    var min = moment(picker.startDate).format('DD-MM-YY');
-                    var max = moment(picker.endDate).format('DD-MM-YY');
+                    var min = moment(picker.startDate).format('hh:mm DD-MM-YY');
+                    var max = moment(picker.endDate).format('hh:mm DD-MM-YY');
 
                     var date = data[3];
                     if (
