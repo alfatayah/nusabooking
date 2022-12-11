@@ -254,7 +254,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const booking = await tbBooking.findOne({ _id: id })
-      booking.status = booking.status === 'taken' ? "done" : "taken";
+      booking.status = booking.status === 'Taken' ? "Done" : "Taken";
       await booking.save();
       req.flash("alertMessage", "Succes Update Booking");
       req.flash("alertStatus", "success");
