@@ -3,35 +3,35 @@
         var start = moment().subtract(29, 'days');
         var end = moment();
         function cb(start, end) {
-            $('#reportrange span').html(start.format('hh:mm DD-MM-YY') + ' - ' + end.format('hh:mm DD-MM-YY'));
+            $('#reportrange span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
         }
         $('#reportrange').daterangepicker({
             startDate: start,
             endDate: end,
-            timePicker: true,
-            timePicker24Hour: true,
+            // timePicker: true,
+            // timePicker24Hour: true,  
             autoUpdateInput: false,
             startDate: new Date(),
             locale: {
                 cancelLabel: 'Clear',
-                format: 'hh:mm DD-MM-YY'
+                format: 'DD-MM-YYYY'
             }
         }, cb);
         cb(start, end);
         $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
             $.fn.dataTable.ext.search.push(
                 function (settings, data, dataIndex) {
-                    var min = moment(picker.startDate).format('hh:mm DD-MM-YY');
-                    var max = moment(picker.endDate).format('hh:mm DD-MM-YY');
-
-                    var date = data[3];
+                    var min = new Date(picker.startDate)
+                    var max = new Date(picker.endDate)
+         
+                    var date = moment(data[3], 'DD-MM-YYYY');
                     if (
                         (min === null && max === null) ||
                         (min === null && date <= max) ||
                         (min <= date && max === null) ||
                         (min <= date && date <= max)
                     ) {
-                        return true;
+                        return true;    
                     }
                     return false;
                 }

@@ -41,9 +41,9 @@
               <td>B<%- JSON.stringify(booking[i]._id).slice(20, 25)  %></td>
               <td><%- booking[i].customer_id.name %></td>
               <td><%= booking[i].user_id.username %></td>
-              <td><%= moment(booking[i].booking_date, "DD-MM-YY hh:mm").format('hh:mm DD-MM-YY')%> </td>
-              <td><%=  moment(booking[i].start_date).format('hh:mm DD-MM-YY') %></td>
-              <td><%= moment(booking[i].end_date).format('hh:mm DD-MM-YY')  %></td>
+              <td><%= moment(new Date(booking[i].booking_date)).format('DD-MM-YYYY')%> </td>
+              <td><%=  moment(booking[i].start_date).format('DD-MM-YYYY') %></td>
+              <td><%= moment(booking[i].end_date).format('DD-MM-YYYY')  %></td>
               <td><%= booking[i].lokasi_pengambilan %></td>
               <% switch (status) {
                 case "Booked": %>
